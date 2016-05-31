@@ -2,6 +2,7 @@ import javax.security.auth.callback.ChoiceCallback;
 
 import controlP5.*;
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
@@ -15,9 +16,11 @@ public class MainApplet extends PApplet{
 	String msg;
 	String answer;
 	int score;
+	PImage character;
 	private int i=0;
 	private String file = "src/resources/problems.json";
 	public void setup(){
+		character = loadImage("src/resources/img/character_1.png");
 		size(width,height);
 		smooth();
 		cp5 = new ControlP5(this);
@@ -70,6 +73,7 @@ public class MainApplet extends PApplet{
 		background(255);
 		textSize(18);
 		fill(0);
+		image(character,0,0);
 		line(0, height/2, width, height/2);
 		msg = problem.getString("question");
 		text(msg,20, 400);
