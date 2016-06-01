@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 import javax.security.auth.callback.ChoiceCallback;
 
 import controlP5.*;
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
@@ -15,9 +18,18 @@ public class MainApplet extends PApplet{
 	String msg;
 	String answer;
 	int score;
-	private int i=0;
+	PImage character,character2;
+	ArrayList<PImage> monster;
+	private int i=0,j=0;
 	private String file = "src/resources/problems.json";
 	public void setup(){
+		monster=new ArrayList<PImage>();
+		character = loadImage("src/resources/img/character_1.png");
+		for(j=1;j<=5;j++)
+		{
+		character2=loadImage("src/resources/img/monster_"+j+".png");
+		monster.add(character2);
+		}
 		size(width,height);
 		smooth();
 		cp5 = new ControlP5(this);
@@ -29,7 +41,7 @@ public class MainApplet extends PApplet{
 		buttonB = cp5.addButton("buttonB").setLabel(problem.getString("choiceB")).setPosition(350, 480) .setSize(150, 50); 
 		buttonC = cp5.addButton("buttonC").setLabel(problem.getString("choiceC")).setPosition(350, 540) .setSize(150, 50); 
 		buttonD = cp5.addButton("buttonD").setLabel(problem.getString("choiceD")).setPosition(350, 600) .setSize(150, 50); 
-		
+	
 		
 	}
 	public void buttonA(){
@@ -70,10 +82,14 @@ public class MainApplet extends PApplet{
 		background(255);
 		textSize(18);
 		fill(0);
+		image(monster.get(0),0,0);
+	
 		line(0, height/2, width, height/2);
 		msg = problem.getString("question");
 		text(msg,20, 400);
 		text(score,width-50,height/2+20);
+	
+	
 	}
 	public void checkAnswer(String ans){
 		answer = problem.getString("answer");
