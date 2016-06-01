@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 
-
+ 
 public class Main extends JFrame {
 	private final static int windowWidth = 1000, windowHeight = 700;
 
