@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import javax.security.auth.callback.ChoiceCallback;
 
 import controlP5.*;
+import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.data.JSONArray;
@@ -17,8 +18,10 @@ public class MainApplet extends PApplet{
 	JSONObject problem;
 	String msg;
 	String answer;
+	Ani ani;
 	int score;
 	PImage character,character2;
+	int locationx=300,locationy=50;
 	ArrayList<PImage> monster;
 	private int i=0,j=0;
 	private String file = "src/resources/problems.json";
@@ -30,6 +33,7 @@ public class MainApplet extends PApplet{
 		character2=loadImage("src/resources/img/monster_"+j+".png");
 		monster.add(character2);
 		}
+		Ani.init(this);
 		size(width,height);
 		smooth();
 		cp5 = new ControlP5(this);
@@ -50,7 +54,7 @@ public class MainApplet extends PApplet{
 		problem = problems.getJSONObject(i);
 		btUpdate();
 		cp5.update();
-		
+		Ani.to(this, (float)0.5, "locationx",350,Ani.LINEAR);
 		
 		//draw();
 	}
@@ -82,8 +86,8 @@ public class MainApplet extends PApplet{
 		background(255);
 		textSize(18);
 		fill(0);
-		image(monster.get(0),0,0);
-	
+		image(monster.get(0),locationx,locationy,300,300);
+		
 		line(0, height/2, width, height/2);
 		msg = problem.getString("question");
 		text(msg,20, 400);

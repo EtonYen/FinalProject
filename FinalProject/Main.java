@@ -8,14 +8,14 @@ public class Main extends JFrame{
 	private final static int windowWidth = 1000, windowHeight = 700;
 
 	public static void main(String[] args)throws IOException {
-		Frame login = new Frame();
-
-		// TODO Auto-generated method stub
-		while(login.flag==false){
-			;
-		}
-		login.dispose();		
-		
+//		Frame login = new Frame();
+//
+//		// TODO Auto-generated method stub
+//		while(login.flag==false){
+//			System.out.println("aa");
+//		}
+//		login.dispose();	
+//		login.setVisible(false);
 		MainApplet applet = new MainApplet();
 		applet.init();
 		applet.start();
