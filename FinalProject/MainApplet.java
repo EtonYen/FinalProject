@@ -19,7 +19,8 @@ public class MainApplet extends PApplet{
 	JSONObject problem;
 	String msg;
 	String answer;
-	Ani ani;
+	Ani ani1,ani2;
+	int mx=300;
 	int score;
 	private int flag=0;
 	PFont font = createFont("¼Ð·¢Åé",20);
@@ -144,7 +145,7 @@ public class MainApplet extends PApplet{
 		problem = problems.getJSONObject(i);
 		btUpdate();
 		cp5.update();
-		Ani.to(this, (float)0.5, "locationx",350,Ani.LINEAR);
+		
 		
 		//draw();
 	}
@@ -196,6 +197,14 @@ public class MainApplet extends PApplet{
 		if(ans.equals(answer))
 		{
 			System.out.println("µª¹ï");
+			for(int i=0;i<=5;i++)
+			{
+			Ani.to(this, (float)1, "locationx",400,Ani.ELASTIC_OUT);
+		
+			Ani.from(this,(float)1,"locationx",400,Ani.ELASTIC_OUT);
+			System.out.println("a");
+			//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
+			}
 			score++;
 			
 		}
