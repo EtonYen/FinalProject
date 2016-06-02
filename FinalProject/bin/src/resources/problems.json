@@ -1,7 +1,7 @@
 {
   "problems": [
     {
-      "question": "Tom ______ something before he left the room, but I couldn’t figure out exactly what he said.",
+      "question": "Tom ______ something before he left the room, but I couldn� figure out exactly what he said.",
       "choiceA": "mumbled",
 	  "choiceB": "perceived",  
 	  "choiceC": "summoned",
@@ -22,6 +22,14 @@
 	  "choiceB": "do you",  
 	  "choiceC": "does it",
 	  "choiceD": "is it",
+	  "answer": "D"
+    },
+    {
+      "question": "中文安安你好哈哈母豬哈哈",
+      "choiceA": "母豬",
+	  "choiceB": "母豬",  
+	  "choiceC": "夜裡",
+	  "choiceD": "哭哭",
 	  "answer": "D"
     }
   ],
