@@ -33,7 +33,7 @@ public class MainApplet extends PApplet{
 		
 		monster=new ArrayList<PImage>();
 		character = loadImage("src/resources/img/character_1.png");
-		menu = loadImage("src/resources/menu.png");
+		menu = loadImage("src/resources/main menu.png");
 		for(j=1;j<=5;j++)
 		{
 		character2=loadImage("src/resources/img/monster_"+j+".png");

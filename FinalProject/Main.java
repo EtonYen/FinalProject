@@ -11,7 +11,13 @@ public class Main extends JFrame{
 		Frame login = new Frame();
 		// TODO Auto-generated method stub
 		while(login.flag==false){
-			System.out.println(login.flag);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//System.out.println(login.flag);
 		}
 		System.out.println("hihihihi");
 		login.dispose();
