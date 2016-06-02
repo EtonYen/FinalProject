@@ -11,7 +11,7 @@ public class Main extends JFrame{
 		Frame login = new Frame();
 		// TODO Auto-generated method stub
 		while(login.flag==false){
-			System.out.println("aa");
+			;//System.out.println("aa");
 		}
 		login.dispose();	
 		login.setVisible(false);
