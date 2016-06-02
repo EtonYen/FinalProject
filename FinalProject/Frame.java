@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 	public class Frame extends JFrame
@@ -23,7 +24,7 @@ import javax.swing.JTextField;
 		private JLabel Jlb_ID = new JLabel("帳號");
 	    private JLabel Jlb_PW = new JLabel("密碼");
 	    private JTextField jid = new JTextField();
-	    private JTextField jpw = new JTextField();
+	    private JPasswordField jpw = new JPasswordField();
 	    private JButton Jbtn_YES = new JButton("確定");
 	    private JButton Jbtn_NO = new JButton("清除");
 	    private JButton Jbtn_ADD = new JButton("註冊");
@@ -107,7 +108,9 @@ import javax.swing.JTextField;
 	                while(s1.hasNext()) {
 	                    name=s1.next();
 	                    pword=s1.next();
-	                    if(jid.getText().equals(name) && jpw.getText().equals(pword)) {
+	                    System.out.println("file: "+pword);
+	                    System.out.println(jpw.getPassword());
+	                    if(jid.getText().equals(name) && pword.equals(String.valueOf(jpw.getPassword()))) {
 	                    	javax.swing.JOptionPane.showMessageDialog(null, "You are logged in!");
 	                        flag=true;
 	                        break;
@@ -130,8 +133,19 @@ import javax.swing.JTextField;
 	            else if(evtE.getSource() == Jbtn_ADD)
 	            {
 	            	String user = jid.getText();
-	                String pass = jpw.getText();
-	                String result = user+"\n"+pass+"\n" ;
+	                char[] pass = jpw.getPassword();
+	                //System.out.println(pass);
+	                
+	                String test = new String();
+	                test = jpw.getPassword().toString();
+	                int test2 = test.hashCode();
+	                
+	                //System.out.println(test2);
+	                //System.out.println(test);
+	                
+	                String result = new String(); 
+	                result=user+"\n"+String.valueOf(pass)+"\n" ;
+	                //System.out.println("**"+result);
 	                //consider same account
 	                Scanner s1 = null;
 	                try {
