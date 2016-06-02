@@ -21,7 +21,7 @@ public class MainApplet extends PApplet{
 	String answer;
 	Ani ani;
 	int score;
-	int flag=0;
+	private int flag=0;
 	PFont font = createFont("º–∑¢≈È",20);
 	PImage character,character2,menu;
 	int locationx=300,locationy=50;

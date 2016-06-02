@@ -11,9 +11,11 @@ public class Main extends JFrame{
 		Frame login = new Frame();
 		// TODO Auto-generated method stub
 		while(login.flag==false){
-			;//System.out.println("aa");
+			System.out.println(login.flag);
 		}
-		login.dispose();	
+		System.out.println("hihihihi");
+		login.dispose();
+		System.out.println("hihihihi");
 		login.setVisible(false);
 		MainApplet applet = new MainApplet();
 		applet.init();
