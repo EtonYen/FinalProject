@@ -270,7 +270,7 @@ public class MainApplet extends PApplet{
 			Ani.to(this, (float)1, "locationx",400,Ani.ELASTIC_OUT);
 		
 			Ani.from(this,(float)1,"locationx",400,Ani.ELASTIC_OUT);
-			System.out.println("a");
+			//System.out.println("a");
 			//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
 			}
 			score++;
