@@ -1,7 +1,7 @@
 {
   "problems": [
     {
-      "question": "Tom ______ something before he left the room, but I couldn嚙踐�� figure out exactly what he said.",
+      "question": "Tom ______ something before he left the room, but I couldn’t figure out exactly what he said.",
       "choiceA": "mumbled",
 	  "choiceB": "perceived",  
 	  "choiceC": "summoned",
@@ -23,6 +23,86 @@
 	  "choiceC": "does it",
 	  "choiceD": "is it",
 	  "answer": "D"
+    },
+    {
+      "question": "下列詞語，何者沒有錯別字？",
+      "choiceA": "營私舞幣",
+	  "choiceB": "武功祕笈",  
+	  "choiceC": "試目以待",
+	  "choiceD": "時代先軀",
+	  "answer": "B"
+    },
+    {
+      "question": "下列四種現象中，何者最需以降雨量作為監測項目？",
+      "choiceA": "地震",
+	  "choiceB": "土石流",  
+	  "choiceC": "全球暖化",
+	  "choiceD": "寒流",
+	  "answer": "B"
+    },
+    {
+      "question": "計算 12/(-3) – (-2) x (-3) 之值為何？",
+      "choiceA": "-18",
+	  "choiceB": "-10",  
+	  "choiceC": "2",
+	  "choiceD": "18",
+	  "answer": "C"
+    },
+    {
+      "question": "下列各組「」內的字，讀音相同的選項是?",
+      "choiceA": "惺「忪」／弦聲錚「鏦」",
+	  "choiceB": "「酖」毒／夫子「哂」之",  
+	  "choiceC": "眼「瞼」／乘「蹇」驢來",
+	  "choiceD": "「掇」拾／夜「縋」而出",
+	  "answer": "C"
+    },
+    {
+      "question": "Charles ____ a day in the department store looking for a hat for his wife.",
+      "choiceA": "cost",
+	  "choiceB": "spent",  
+	  "choiceC": "saw",
+	  "choiceD": "made",
+	  "answer": "B"
+    },
+    {
+      "question": "13　17　＿＿　19　23",
+      "choiceA": "24",
+	  "choiceB": "25",  
+	  "choiceC": "28",
+	  "choiceD": "29",
+	  "answer": "D"
+    },
+    {
+      "question": "信紙之於＿＿，好比＿＿之於奶瓶?",
+      "choiceA": "郵票…水果",
+	  "choiceB": "郵局…汽水",  
+	  "choiceC": "信封…牛奶",
+	  "choiceD": "郵差…水果",
+	  "answer": "B"
+    },
+    {
+      "question": "3　1　2　13　＿＿　8　23　12　11　33",
+      "choiceA": "0",
+	  "choiceB": "1",  
+	  "choiceC": "3",
+	  "choiceD": "5",
+	  "answer": "D"
+    },
+    {
+      "question": "15　＿＿　17　18　19　21　23　26",
+      "choiceA": "14",
+	  "choiceB": "15",  
+	  "choiceC": "16",
+	  "choiceD": "17",
+	  "answer": "D"
+    },
+    {
+      "question": "小惠和小華比賽賽跑，1小華時速為15公里，小惠為每分鐘150公尺；若已知全程為5000公尺，則請問當小華抵達終點時，小惠距離終點還有多少公尺？",
+      "choiceA": "1,000",
+	  "choiceB": "1,500",  
+	  "choiceC": "2,000",
+	  "choiceD": "2,500",
+	  "answer": "C"
     },
     {
       "question": "小敬搬新家，阿嬌欲送禮金表達祝賀之意。下列題辭，何者最適合寫在賀儀封套上？",
