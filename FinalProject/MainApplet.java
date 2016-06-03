@@ -13,7 +13,7 @@ import processing.data.JSONObject;
 public class MainApplet extends PApplet{
 	private final static int width = 1000, height = 700;
 	private ControlP5 cp5;
-	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu;
+	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu,btAddCharacter;
 	JSONObject data;
 	JSONArray problems;
 	JSONObject problem;
@@ -60,7 +60,7 @@ public class MainApplet extends PApplet{
 		btEnvironment = cp5.addButton("btEnvironment").setLabel("環境設定").setPosition(width/2, 540) .setSize(150, 50); 
 		btAbout = cp5.addButton("btAbout").setLabel("關於遊戲").setPosition(width/2, 600) .setSize(150, 50); 
 		
-		btBackToMenu = cp5.addButton("btBackToMenu").setLabel("Back").setPosition(800, 600) .setSize(150, 50);
+		btBackToMenu = cp5.addButton("btBackToMenu").setLabel("返回").setPosition(800, 600) .setSize(150, 50);
 		cp5.getController("btBackToMenu")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -68,6 +68,15 @@ public class MainApplet extends PApplet{
 	     .setSize(24)
 	     ;
 		btBackToMenu.hide();
+		
+		btAddCharacter = cp5.addButton("btAddCharacter").setLabel("新增角色").setPosition(800, 500) .setSize(150, 50);
+		cp5.getController("btAddCharacter")
+	     .getCaptionLabel()
+	     .setFont(f)
+	     .toUpperCase(false)
+	     .setSize(24)
+	     ;
+		btAddCharacter.hide();
 		
 		cp5.getController("btOne")
 	     .getCaptionLabel()
@@ -159,7 +168,12 @@ public class MainApplet extends PApplet{
 		btCharacter.show();
 		btEnvironment.show();
 		btAbout.show();
+		
 		btBackToMenu.hide();
+		btAddCharacter.hide();
+	}
+	public void btAddCharacter(){
+		BlockImage puzzle = new BlockImage();
 	}
 	public void btOne(){ //1-P
 		flag=1;
@@ -178,6 +192,7 @@ public class MainApplet extends PApplet{
 	public void btCharacter(){ //Character
 		flag=3;
 		addBackButton();
+		btAddCharacter.show();
 		cp5.update();
 		
 		//draw();
@@ -280,7 +295,7 @@ public class MainApplet extends PApplet{
 			System.out.println("答錯");
 		
 	}
-	private void btUpdate(){ //date button index
+	private void btUpdate(){ //update button index
 			buttonA.setLabel(problem.getString("choiceA"));
 			buttonB.setLabel(problem.getString("choiceB"));
 			buttonC.setLabel(problem.getString("choiceC"));

@@ -5,36 +5,28 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 
 public class BlockImage extends Canvas {
         
         private static final long serialVersionUID = 1L;
-
         private Image _img,_img2,backimage;
-
-        private Graphics bg;
-        
+        private Graphics bg;      
         private Graphics later = null;
-
         private int blocks[];
-
         private boolean isEvent;
-
         private MediaTracker mt;
-
         private int _width,_height;
-
         private int _RS,_CS;
-
         private Image screen = null;
-
         private int _objWidth,_objHeight;
-
         private int _COUNT;
         
         //===================================
@@ -138,6 +130,7 @@ public class BlockImage extends Canvas {
                         }
                         else{
                         	System.out.println("win!!!!!!!");
+                        	frm.dispose();
                         }
                 }
                 // 舉凡繪制圖像時，應遵循顯示圖像僅繪制一次的基本原則，一次性的將背景繪制到窗體。
@@ -241,6 +234,36 @@ public class BlockImage extends Canvas {
                 }
 
         }
+        public BlockImage(){
+        	frm = new Frame("Puzzle Game");
+            frm.setSize(630,530);
+            frm.setResizable(false);
+           
+            // 加載圖像。
+            Image backImage = null ;
+            Image overImage = null ;
+            try {
+            	backImage = ImageIO.read(new File("src/resources/img/puzzle-1.jpg"));
+            } catch (IOException e) {
+            }                
+            frm.add(new BlockImage(backImage,overImage, 2, 2));
+            //BlockImage -> use to divide the puzzle in x*y
+            backImage = null;
+            overImage = null;
+            
+            // 顯示窗體。
+            frm.setVisible(true);
+            frm.addWindowListener(new WindowAdapter() 
+            { 
+            	public void windowClosing (WindowEvent e) { //<--- 當按下關閉視窗時 
+            		frm.dispose(); //<--- 結束程式 
+            	} 
+            } 
+            ); 
+
+        }
+        
+        /*
         public static void main(String[] args) {
 
                 frm = new Frame("Puzzle Game");
@@ -261,6 +284,6 @@ public class BlockImage extends Canvas {
                 
                 // 顯示窗體。
                 frm.setVisible(true);
-        }
+        }*/
 
 }
