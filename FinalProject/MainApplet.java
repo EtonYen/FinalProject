@@ -30,7 +30,7 @@ public class MainApplet extends PApplet{
 	private int flag=0,chflag=0;
 	int btx1,bty1,btx2,bty2,btx3,bty3,btx4,bty4;
 	PFont font = createFont("標楷體",20);
-	PImage character,character2,menu,characterPage,environmentPage,aboutPage;
+	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5;
 	int locationx=300,locationy=50;
 	ArrayList<PImage> monster;
 	private int i=0,j=0;
@@ -46,7 +46,12 @@ public class MainApplet extends PApplet{
 		characterPage = loadImage("src/resources/shop.png");
 		environmentPage = loadImage("src/resources/setting.png");
 		aboutPage = loadImage("src/resources/setting.png");
-		
+		ch1 = loadImage("src/resources/img/character_1.png");
+		ch2 = loadImage("src/resources/img/character_2.png");
+		ch3 = loadImage("src/resources/img/character_3.png");
+		ch4 = loadImage("src/resources/img/character_4.png");
+		ch5 = loadImage("src/resources/img/character_5.png");
+
 		for(j=1;j<=5;j++)
 		{
 			character2=loadImage("src/resources/img/monster_"+j+".png");
@@ -77,7 +82,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btBackToMenu.hide();
 		
-		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("新增角色1").setPosition(360, 360) .setSize(150, 50);
+		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("新增角色 1").setPosition(360, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter1")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -86,7 +91,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter1.hide();
 		
-		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("新增角色2").setPosition(580, 360) .setSize(150, 50);
+		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("新增角色 2").setPosition(580, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter2")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -95,7 +100,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter2.hide();
 		
-		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("新增角色3").setPosition(800, 360) .setSize(150, 50);
+		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("新增角色 3").setPosition(800, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter3")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -104,7 +109,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter3.hide();
 		
-		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("新增角色4").setPosition(360, 600) .setSize(150, 50);
+		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("新增角色 4").setPosition(360, 600) .setSize(150, 50);
 		cp5.getController("btAddCharacter4")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -113,7 +118,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter4.hide();
 		
-		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("新增角色5").setPosition(580, 600) .setSize(150, 50);
+		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("新增角色 5").setPosition(580, 600) .setSize(150, 50);
 		cp5.getController("btAddCharacter5")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -340,8 +345,15 @@ public class MainApplet extends PApplet{
 			
 		}else if(flag==3){ //Character mode
 			image(characterPage,0,0,width,height);
+			image(ch1,360,200,150,150);
+			image(ch2,590,200,140,150);
+			image(ch3,810,200,140,150);
+			image(ch4,360,450,140,150);
+			image(ch5,580,450,150,150);
+
 		}else if(flag==4){ //Environment mode
 			image(environmentPage,0,0,width,height);
+			
 		}else if(flag==5){ //About mode
 			image(aboutPage,0,0,width,height);
 
