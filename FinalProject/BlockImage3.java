@@ -14,7 +14,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class BlockImage extends Canvas {
+public class BlockImage3 extends Canvas {
         
         private static final long serialVersionUID = 1L;
         private Image _img,_img2,backimage;
@@ -38,19 +38,19 @@ public class BlockImage extends Canvas {
 
         static private Frame frm;
         /**
-         * 析構函數，內部調用initial方法。
+         * ����嚗�隤輻initial�瘜��
          * 
          * @param bImage
          * @param overImage
          * @param cs
          * @param rs
          */
-        public BlockImage(Image bImage, Image overImage, int cs, int rs) {
+        public BlockImage3(Image bImage, Image overImage, int cs, int rs) {
                 init(bImage, overImage, cs, rs);
         }
 
         /**
-         * 初始化拼圖参數。
+         * ���������
          * 
          * @param bImage
          * @param overImage
@@ -58,70 +58,70 @@ public class BlockImage extends Canvas {
          * @param rs
          */
         public void init(Image bImage, Image overImage, int cs, int rs) {
-                // 列數
+                // ��
                 _CS = cs;
-                // 行數
+                // 銵
                 _RS = rs;
-                // 加載拼圖用圖像。
+                // ����������
                 _img = bImage;
 
-                // 獲得實際窗體寬。
+                // �敺祕����祝��
                 _width = _img.getWidth(null);
-                // 獲得實際窗體高。
+                // �敺祕�������
                 _height = _img.getHeight(null);
-                // 獲得單塊圖像寬。
+                // �敺憛��祝��
                 _objWidth = _width / _CS;
-                // 獲得單塊圖像高。
+                // �敺憛�����
                 _objHeight = _height / _RS;
 
-                // 本程序直接使用back image上一塊圖形區域緩沖選擇項，所以實際背景圖像高=圖形高+額外圖塊高。
+                // �蝔��雿輻back image銝�憛�耦����楨瘝�����隞亙祕��������=��耦擃�+憿������
                 backimage = new BufferedImage(_width, _height + _objHeight, 1);
-                // 獲得生成的圖形
+                // �敺����耦
                 later = backimage.getGraphics();
-                // 再創建一塊圖像區域，作为圖像緩存用。
+                // ��撱箔�憛�������蛹���楨摮��
                 screen = new BufferedImage(_width, _height, 1);
-                // 獲得緩存的圖形
+                // �敺楨摮��耦
                 bg = screen.getGraphics();
-                // 獲得等同圖片總數的數組。
+                // �敺����蜇���蝯��
                 _COUNT = _CS * _RS;
                 blocks = new int[_COUNT];
-                // 初始化为非點擊。
+                // ����蛹������
                 isEvent = false;
-                // 加載完成拼圖的顯示圖。
+                // ��������＊蝷箏���
                 _img2 = overImage;
-                // 初始化圖塊参數。
+                // ���������
                 for (int i = 0; i < _COUNT; i++) {
                         blocks[i] = i;
                 }
-                // 載入MediaTracker，用以跟蹤圖像狀態。
+                // 頛MediaTracker嚗隞亥�馱��������
                 mt = new MediaTracker(this);
-                // 加載被跟蹤的圖像。
+                // ���◤頝馱������
                 mt.addImage(_img, 0);
                 mt.addImage(_img2,0);
-                // 同步載入。
+                // ��郊頛��
                 try {
                         mt.waitForID(0);
                 } catch (InterruptedException interruptedexception) {
                         return;
                 }
-                // 隨機生成圖像面板內容。
+                // �璈������摰嫘��
                 rndPannel();
 
         }
 
         /**
-         * 描繪窗體圖像。
+         * ��鼓蝒�����
          */
         public void paint(Graphics g) {
-                // 檢查圖像載入。
+                // 瑼Ｘ������
                 if (mt.checkID(0)) {
-                        // 描繪底層背景。
+                        // ��鼓摨惜����
                         bg.drawImage(backimage, 0, 0, null);
-                        // 判斷是否觸發完成事件。
+                        // ����閫貊摰��辣��
                         if (!isEvent) {
-                                // 設置背景色。
+                                // 閮剔蔭�����
                                 bg.setColor(Color.black);
-                                // 循環繪制小圖片於背景緩存中。
+                                // 敺芰蝜芸撠����蝺拙�葉��
                                 for (int i = 0; i < _CS; i++) {
                                         for (int j = 0; j < _RS; j++)
                                                 bg.drawRect(i * _objWidth, j * _objHeight, _objWidth,_objHeight);
@@ -133,21 +133,21 @@ public class BlockImage extends Canvas {
                         	//frm.dispose();
                         }
                 }
-                // 舉凡繪制圖像時，應遵循顯示圖像僅繪制一次的基本原則，一次性的將背景繪制到窗體。
-                // 簡單來說，也就是采取[雙緩存]的方式，所有复雜操作皆在緩存區完成，也只有這样才能避免產生延遲閃爍。
+                // ��蝜芸������敺芷＊蝷箏���鼓�銝�甈∠�������甈⊥�抒���蝜芸�蝒���
+                // 蝪∪靘牧嚗�停������楨摮��撘���������蝺拙��摰�������������辣������
                 g.drawImage(screen, 0, 0, this);
                 g.dispose();
         }
 
         /**
-         * 變更圖像。
+         * 霈�����
          */
         public void update(Graphics g) {
                 paint(g);
         }
 
         /**
-         * 鼠標點擊事件。
+         * 曌����辣��
          */
         public boolean mouseDown(Event event, int i, int j) {
         	
@@ -235,16 +235,16 @@ public class BlockImage extends Canvas {
                 }
 
         }
-        public BlockImage(){
+        public BlockImage3(){
         	frm = new Frame("Puzzle Game");
             frm.setSize(500,530);
             frm.setResizable(false);
            
-            // 加載圖像。
+            // �������
             Image backImage = null ;
             Image overImage = null ;
             try {
-            	backImage = ImageIO.read(new File("src/resources/img/puzzle-1.jpg"));
+            	backImage = ImageIO.read(new File("src/resources/img/puzzle-3.jpg"));
             } catch (IOException e) {
             }                
             frm.add(new BlockImage(backImage,overImage, 4, 4));
@@ -252,13 +252,13 @@ public class BlockImage extends Canvas {
             backImage = null;
             overImage = null;
             
-            // 顯示窗體。
+            // 憿舐內蝒���
             frm.setVisible(true);
             frm.addWindowListener(new WindowAdapter() 
             { 
-            	public void windowClosing (WindowEvent e) { //<--- 當按下關閉視窗時 
+            	public void windowClosing (WindowEvent e) { //<--- ���������� 
             		System.out.println("win->"+win);
-            		frm.dispose(); //<--- 結束程式 
+            		frm.dispose(); //<--- 蝯���� 
             	} 
             } 
             ); 
@@ -272,7 +272,7 @@ public class BlockImage extends Canvas {
                 frm.setSize(630,530);
                 frm.setResizable(false);
                
-                // 加載圖像。
+                // �������
                 Image backImage = null ;
                 Image overImage = null ;
                 try {
@@ -284,7 +284,7 @@ public class BlockImage extends Canvas {
                 backImage = null;
                 overImage = null;
                 
-                // 顯示窗體。
+                // 憿舐內蝒���
                 frm.setVisible(true);
         }*/
 

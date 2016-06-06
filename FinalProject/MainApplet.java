@@ -12,6 +12,10 @@ import processing.data.JSONArray;
 import processing.data.JSONObject;
 
 public class MainApplet extends PApplet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final static int width = 1000, height = 700;
 	private ControlP5 cp5;
 	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu,btAddCharacter;
@@ -131,10 +135,10 @@ public class MainApplet extends PApplet{
 		btEnvironment.hide();
 		btAbout.hide();
 		btx1=350;
-		buttonA = cp5.addButton("buttonA").setLabel(problem.getString("choiceA")).setPosition(btx1, 420) .setSize(150, 50); 
-		buttonB = cp5.addButton("buttonB").setLabel(problem.getString("choiceB")).setPosition(btx1, 480) .setSize(150, 50); 
-		buttonC = cp5.addButton("buttonC").setLabel(problem.getString("choiceC")).setPosition(btx1, 540) .setSize(150, 50); 
-		buttonD = cp5.addButton("buttonD").setLabel(problem.getString("choiceD")).setPosition(btx1, 600) .setSize(150, 50); 
+		buttonA = cp5.addButton("buttonA").setLabel(problem.getString("choiceA")).setPosition(btx1, 420) .setSize(350, 50); 
+		buttonB = cp5.addButton("buttonB").setLabel(problem.getString("choiceB")).setPosition(btx1, 480) .setSize(350, 50); 
+		buttonC = cp5.addButton("buttonC").setLabel(problem.getString("choiceC")).setPosition(btx1, 540) .setSize(350, 50); 
+		buttonD = cp5.addButton("buttonD").setLabel(problem.getString("choiceD")).setPosition(btx1, 600) .setSize(350, 50); 
 	
 		cp5.getController("buttonA")
 	     .getCaptionLabel()
