@@ -49,7 +49,7 @@ public class MainApplet extends PApplet{
 	int musicanimal=0;
 	int musicanimalx=300;
 	int nowCharacter =1; int chgamerecord=1; 
-	int chlocationx=50;
+	int chlocationx=40;
 	BlockImage puzzle;
 	boolean puzzlegame=false;
 	public void setup(){
@@ -107,7 +107,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btBackToMenu.hide();
 		
-		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("新增角色 1").setPosition(360, 360) .setSize(150, 50);
+		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("更改角色 1").setPosition(360, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter1")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -116,7 +116,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter1.hide();
 		
-		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("新增角色 2").setPosition(580, 360) .setSize(150, 50);
+		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("更改角色 2").setPosition(580, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter2")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -125,7 +125,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter2.hide();
 		
-		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("新增角色 3").setPosition(800, 360) .setSize(150, 50);
+		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("更改角色 3").setPosition(800, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter3")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -134,7 +134,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter3.hide();
 		
-		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("新增角色 4").setPosition(360, 600) .setSize(150, 50);
+		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("更改角色 4").setPosition(360, 600) .setSize(150, 50);
 		cp5.getController("btAddCharacter4")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -143,7 +143,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter4.hide();
 		
-		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("新增角色 5").setPosition(580, 600) .setSize(150, 50);
+		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("更改角色 5").setPosition(580, 600) .setSize(150, 50);
 		cp5.getController("btAddCharacter5")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -437,6 +437,8 @@ public class MainApplet extends PApplet{
 			buttonD.setPosition(btx1,600);
 			//updatebtn();
 			
+			image(nowch,chlocationx,200,140,140);
+			/*
 			if(nowCharacter==1){
 				image(ch1,chlocationx,420,300,300);
 			}else if(nowCharacter==2){
@@ -447,7 +449,7 @@ public class MainApplet extends PApplet{
 				image(ch4,chlocationx,420,300,280);
 			}else{
 				image(ch5,chlocationx,420,300,300);
-			}
+			}*/
 		}
 		
 		else if(flag==2){ //2-P mode
@@ -455,25 +457,29 @@ public class MainApplet extends PApplet{
 		}else if(flag==3){ //Character mode
 			
 			if(puzzlegame==true){
-				if(puzzle.winornot)
-					System.out.println("@@@@@@!!!!!");
 				
-				if(chgamerecord==1 && puzzle.winornot==true){
+				
+				if(chgamerecord==1 && puzzle.win==true){
 					nowCharacter = 1;
-					//puzzle.winornot=false;
-				}else if(chgamerecord==2 && puzzle.winornot==true){
+					nowch=ch1;
+					puzzle.win=false;
+				}else if(chgamerecord==2 && puzzle.win==true){
 					nowCharacter = 2;
-					//puzzle.winornot=false;
-					System.out.print("11");
-				}else if(chgamerecord==3 && puzzle.winornot==true){
+					nowch=ch2;
+					puzzle.win=false;
+					//System.out.print("11");
+				}else if(chgamerecord==3 && puzzle.win==true){
 					nowCharacter = 3;
-					//puzzle.winornot=false;
-				}else if(chgamerecord==4 && puzzle.winornot==true){
+					nowch=ch3;
+					puzzle.win=false;
+				}else if(chgamerecord==4 && puzzle.win==true){
 					nowCharacter = 4;
-					//puzzle.winornot=false;
-				}else if(chgamerecord==5 && puzzle.winornot==true){
+					nowch=ch4;
+					puzzle.win=false;
+				}else if(chgamerecord==5 && puzzle.win==true){
 					nowCharacter = 5;
-					//puzzle.winornot=false;
+					nowch=ch5;
+					puzzle.win=false;
 				}		
 			}
 			
@@ -485,18 +491,7 @@ public class MainApplet extends PApplet{
 			image(ch4,360,450,140,150);
 			image(ch5,580,450,150,150);
 			
-			chlocationx=0;
-			if(nowCharacter==1){
-				image(nowch,chlocationx,420,300,300);
-			}else if(nowCharacter==2){
-				image(nowch,chlocationx,420,300,280);
-			}else if(nowCharacter==3){
-				image(nowch,chlocationx,420,300,280);
-			}else if(nowCharacter==4){
-				image(nowch,chlocationx,420,300,280);
-			}else{
-				image(nowch,chlocationx,420,300,300);
-			}
+			
 		}else if(flag==4){ //Environment mode
 			image(environmentPage,0,0,width,height);
 			if(music.sw==true){	
