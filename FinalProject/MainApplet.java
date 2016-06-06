@@ -48,7 +48,7 @@ public class MainApplet extends PApplet{
 		menu = loadImage("src/resources/main menu.png");
 		characterPage = loadImage("src/resources/shop.png");
 		environmentPage = loadImage("src/resources/setting.png");
-		aboutPage = loadImage("src/resources/setting.png");
+		aboutPage = loadImage("src/resources/about.png");
 		ch1 = loadImage("src/resources/img/character_1.png");
 		ch2 = loadImage("src/resources/img/character_2.png");
 		ch3 = loadImage("src/resources/img/character_3.png");
