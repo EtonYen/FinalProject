@@ -235,7 +235,7 @@ public class BlockImage extends Canvas {
                 }
 
         }
-        public BlockImage(){
+        public BlockImage(String s){
         	frm = new Frame("Puzzle Game");
             frm.setSize(500,530);
             frm.setResizable(false);
@@ -244,7 +244,7 @@ public class BlockImage extends Canvas {
             Image backImage = null ;
             Image overImage = null ;
             try {
-            	backImage = ImageIO.read(new File("src/resources/img/puzzle-1.jpg"));
+            	backImage = ImageIO.read(new File("src/resources/img/puzzle-"+s+".jpg"));
             } catch (IOException e) {
             }                
             frm.add(new BlockImage(backImage,overImage, 4, 4));
@@ -264,28 +264,5 @@ public class BlockImage extends Canvas {
             ); 
 
         }
-        
-        /*
-        public static void main(String[] args) {
-
-                frm = new Frame("Puzzle Game");
-                frm.setSize(630,530);
-                frm.setResizable(false);
-               
-                // 加載圖像。
-                Image backImage = null ;
-                Image overImage = null ;
-                try {
-                	backImage = ImageIO.read(new File("src/resources/img/puzzle-1.jpg"));
-                } catch (IOException e) {
-                }                
-                frm.add(new BlockImage(backImage,overImage, 2, 2));
-                //BlockImage -> use to divide the puzzle in x*y
-                backImage = null;
-                overImage = null;
-                
-                // 顯示窗體。
-                frm.setVisible(true);
-        }*/
 
 }

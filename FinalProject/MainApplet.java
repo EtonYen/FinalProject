@@ -222,19 +222,19 @@ public class MainApplet extends PApplet{
 
 	}
 	public void btAddCharacter1(){
-		BlockImage puzzle = new BlockImage();
+		BlockImage puzzle = new BlockImage("1");
 	}
 	public void btAddCharacter2(){
-		BlockImage puzzle = new BlockImage();
+		BlockImage puzzle = new BlockImage("2");
 	}
 	public void btAddCharacter3(){
-		BlockImage puzzle = new BlockImage();
+		BlockImage puzzle = new BlockImage("3");
 	}
 	public void btAddCharacter4(){
-		BlockImage puzzle = new BlockImage();
+		BlockImage puzzle = new BlockImage("4");
 	}
 	public void btAddCharacter5(){
-		BlockImage puzzle = new BlockImage();
+		BlockImage puzzle = new BlockImage("5");
 	}
 	
 	public void btOne(){ //1-P
