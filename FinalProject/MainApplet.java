@@ -36,7 +36,7 @@ public class MainApplet extends PApplet{
 	Timer timer=new Timer();
 	int btx1,bty1,btx2,bty2,btx3,bty3,btx4,bty4;
 	PFont font = createFont("º–∑¢≈È",20);
-	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5;
+	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5,nowch;
 	int locationx=300,locationy=50;
 	ArrayList<PImage> monster;
 	private int i=0,j=0,k=0;
@@ -45,9 +45,13 @@ public class MainApplet extends PApplet{
 	boolean unknown_flag = false;
 	private String file = "src/resources/problems.json";
 	Music music = new Music();
-	PImage musicanimal1,musicanimal2;
+	PImage musicanimal1,musicanimal2,gamebackground;
 	int musicanimal=0;
 	int musicanimalx=300;
+	int nowCharacter =1; int chgamerecord=1; 
+	int chlocationx=50;
+	BlockImage puzzle;
+	boolean puzzlegame=false;
 	public void setup(){
 		ran=new Random();
 		monster=new ArrayList<PImage>();
@@ -61,7 +65,8 @@ public class MainApplet extends PApplet{
 		ch3 = loadImage("src/resources/img/character_3.png");
 		ch4 = loadImage("src/resources/img/character_4.png");
 		ch5 = loadImage("src/resources/img/character_5.png");
-
+		nowch = ch1;
+		gamebackground = loadImage("src/resources/gamebackground.jpg");
 		musicanimal1 = loadImage("src/resources/Bing_bong_1.png");
 		musicanimal2 = loadImage("src/resources/Bing_bong_2.png");
 		for(j=1;j<=5;j++)
@@ -248,25 +253,41 @@ public class MainApplet extends PApplet{
 
 	}
 	public void btAddCharacter1(){
-		BlockImage puzzle = new BlockImage("1");
+		//BlockImage puzzle = new BlockImage("1");
+		puzzle = new BlockImage("1");
+		chgamerecord=1;
+		puzzlegame=true;
 	}
 	public void btAddCharacter2(){
-		BlockImage puzzle = new BlockImage("2");
+		//BlockImage puzzle = new BlockImage("2");
+		puzzle = new BlockImage("2");
+		chgamerecord=2;
+		puzzlegame=true;
 	}
 	public void btAddCharacter3(){
-		BlockImage puzzle = new BlockImage("3");
+		//BlockImage puzzle = new BlockImage("3");
+		puzzle = new BlockImage("3");
+		chgamerecord=3;
+		puzzlegame=true;
 	}
 	public void btAddCharacter4(){
-		BlockImage puzzle = new BlockImage("4");
+		//BlockImage puzzle = new BlockImage("4");
+		puzzle = new BlockImage("4");
+		chgamerecord=4;
+		puzzlegame=true;
 	}
 	public void btAddCharacter5(){
-		BlockImage puzzle = new BlockImage("5");
+		//BlockImage puzzle = new BlockImage("5");
+		puzzle = new BlockImage("5");
+		chgamerecord=5;
+		puzzlegame=true;
 	}
 	
 	public void btOne(){ //1-P
 		flag=1;
 		chButton();
-		btUpdate();
+		btUpdate();	
+		
 		cp5.update();
 		
 		//draw();
@@ -399,6 +420,8 @@ public class MainApplet extends PApplet{
 		}
 		
 		else if (flag==1){ //1-P mode
+			image(gamebackground,0,0,width,height);
+			
 			textFont(font,20);
 			fill(0);
 			
@@ -413,18 +436,67 @@ public class MainApplet extends PApplet{
 			buttonC.setPosition(btx1,540);
 			buttonD.setPosition(btx1,600);
 			//updatebtn();
+			
+			if(nowCharacter==1){
+				image(ch1,chlocationx,420,300,300);
+			}else if(nowCharacter==2){
+				image(ch2,chlocationx,420,300,280);
+			}else if(nowCharacter==3){
+				image(ch3,chlocationx,420,300,280);
+			}else if(nowCharacter==4){
+				image(ch4,chlocationx,420,300,280);
+			}else{
+				image(ch5,chlocationx,420,300,300);
+			}
 		}
 		
 		else if(flag==2){ //2-P mode
 			
 		}else if(flag==3){ //Character mode
+			
+			if(puzzlegame==true){
+				if(puzzle.winornot)
+					System.out.println("@@@@@@!!!!!");
+				
+				if(chgamerecord==1 && puzzle.winornot==true){
+					nowCharacter = 1;
+					//puzzle.winornot=false;
+				}else if(chgamerecord==2 && puzzle.winornot==true){
+					nowCharacter = 2;
+					//puzzle.winornot=false;
+					System.out.print("11");
+				}else if(chgamerecord==3 && puzzle.winornot==true){
+					nowCharacter = 3;
+					//puzzle.winornot=false;
+				}else if(chgamerecord==4 && puzzle.winornot==true){
+					nowCharacter = 4;
+					//puzzle.winornot=false;
+				}else if(chgamerecord==5 && puzzle.winornot==true){
+					nowCharacter = 5;
+					//puzzle.winornot=false;
+				}		
+			}
+			
+			
 			image(characterPage,0,0,width,height);
 			image(ch1,360,200,150,150);
 			image(ch2,590,200,140,150);
 			image(ch3,810,200,140,150);
 			image(ch4,360,450,140,150);
 			image(ch5,580,450,150,150);
-
+			
+			chlocationx=0;
+			if(nowCharacter==1){
+				image(nowch,chlocationx,420,300,300);
+			}else if(nowCharacter==2){
+				image(nowch,chlocationx,420,300,280);
+			}else if(nowCharacter==3){
+				image(nowch,chlocationx,420,300,280);
+			}else if(nowCharacter==4){
+				image(nowch,chlocationx,420,300,280);
+			}else{
+				image(nowch,chlocationx,420,300,300);
+			}
 		}else if(flag==4){ //Environment mode
 			image(environmentPage,0,0,width,height);
 			if(music.sw==true){	
