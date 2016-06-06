@@ -1,6 +1,8 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Arrays;
 
 import javax.security.auth.callback.ChoiceCallback;
@@ -29,7 +31,8 @@ public class MainApplet extends PApplet{
 	Ani ani1,ani2;
 	int mx=300;
 	int score,total_count;
-	private int flag=0,chflag=0;
+	private int flag=0,chflag=0,preflag=0,flagflag=0;
+	Timer timer=new Timer();
 	int btx1,bty1,btx2,bty2,btx3,bty3,btx4,bty4;
 	PFont font = createFont("º–∑¢≈È",20);
 	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5;
@@ -367,7 +370,7 @@ public class MainApplet extends PApplet{
 			textFont(font,20);
 			fill(0);
 			
-			image(monster.get(chflag),locationx,locationy,300,300);
+			image(monster.get(preflag),locationx,locationy,300,300);
 			
 			line(0, height/2, width, height/2);
 			msg = problem.getString("question");
@@ -400,6 +403,7 @@ public class MainApplet extends PApplet{
 	}
 
 	public void checkAnswer(String ans){
+		flagflag=0;
 		if(unknown_flag)
 		{
 			unknown_flag = false;
@@ -417,7 +421,27 @@ public class MainApplet extends PApplet{
 				//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
 				}
 				score++;
-				chflag=ran.nextInt(4);
+				flagflag=1;
+				timer.schedule(new TimerTask() {
+					public void run() {
+						
+						if(flagflag==1){
+							chflag=ran.nextInt(5);
+							preflag=chflag;
+							
+							
+						}
+					}
+			}, 1002);
+				timer.schedule(new TimerTask() {
+					public void run() {
+						
+						flagflag=0;
+							
+						}
+					
+			}, 1002);
+//				preflag=chflag;
 			}
 			else
 			{
@@ -435,7 +459,26 @@ public class MainApplet extends PApplet{
 					//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
 					}
 					score++;
-					chflag=ran.nextInt(4);
+					flagflag=1;
+					timer.schedule(new TimerTask() {
+						public void run() {
+							
+							if(flagflag==1){
+								chflag=ran.nextInt(5);
+								preflag=chflag;
+								
+								
+							}
+						}
+				}, 1002);
+					timer.schedule(new TimerTask() {
+						public void run() {
+							
+							flagflag=0;
+								
+							}
+						
+				}, 1002);
 				}
 				else
 				{	
@@ -483,7 +526,27 @@ public class MainApplet extends PApplet{
 				//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
 				}
 				score++;
-				chflag=ran.nextInt(4);
+	
+				flagflag=1;
+				timer.schedule(new TimerTask() {
+					public void run() {
+						
+						if(flagflag==1){
+							chflag=ran.nextInt(5);
+							preflag=chflag;
+							
+							
+						}
+					}
+			}, 1002);
+				timer.schedule(new TimerTask() {
+					public void run() {
+						
+						flagflag=0;
+							
+						}
+					
+			}, 1002);
 			}
 			else
 			{	
