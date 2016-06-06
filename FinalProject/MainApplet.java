@@ -77,7 +77,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btBackToMenu.hide();
 		
-		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("新增角色1").setPosition(400, 250) .setSize(150, 50);
+		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("新增角色1").setPosition(360, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter1")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -86,7 +86,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter1.hide();
 		
-		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("新增角色2").setPosition(800, 250) .setSize(150, 50);
+		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("新增角色2").setPosition(580, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter2")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -95,7 +95,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter2.hide();
 		
-		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("新增角色3").setPosition(400, 500) .setSize(150, 50);
+		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("新增角色3").setPosition(800, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter3")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -104,7 +104,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter3.hide();
 		
-		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("新增角色4").setPosition(800, 500) .setSize(150, 50);
+		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("新增角色4").setPosition(360, 600) .setSize(150, 50);
 		cp5.getController("btAddCharacter4")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -113,7 +113,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter4.hide();
 		
-		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("新增角色").setPosition(400, 600) .setSize(150, 50);
+		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("新增角色5").setPosition(580, 600) .setSize(150, 50);
 		cp5.getController("btAddCharacter5")
 	     .getCaptionLabel()
 	     .setFont(f)
