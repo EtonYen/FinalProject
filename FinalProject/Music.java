@@ -59,9 +59,12 @@ public class Music extends JFrame {
 	public static JButton b = new JButton("click to pauce");
 	private URL url;
 	private AudioInputStream audioIn;
-	public static Clip clip; 
-	public static boolean sw = true;//no music
+	//public static Clip clip; 
+	//public static boolean sw = true;//no music
     
+	public Clip clip; 
+	public boolean sw = true;//no music
+	/*
 	public static class AL implements ActionListener{
   		public final void actionPerformed(ActionEvent e){
   			if(sw==false)sw=true;
@@ -77,15 +80,15 @@ public class Music extends JFrame {
   			}
   		}
   	}
-	
+	*/
 	public Music() {
 	  
-      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      this.setTitle("Test Sound Clip");
-      this.setSize(300, 200);
-      this.setVisible(true);
-      this.add(b);
-      b.addActionListener(new AL());
+    //  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //  this.setTitle("Test Sound Clip");
+     // this.setSize(300, 200);
+    //  this.setVisible(true);
+    //  this.add(b);
+    //  b.addActionListener(new AL());
       
 
       try {
@@ -106,8 +109,8 @@ public class Music extends JFrame {
          e.printStackTrace();
       }
    }
-	
+/*	
    public static void main(String[] args) {
       new Music();
-   }
+   }*/
 }

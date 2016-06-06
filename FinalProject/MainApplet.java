@@ -23,6 +23,7 @@ public class MainApplet extends PApplet{
 	private final static int width = 1000, height = 700;
 	private ControlP5 cp5;
 	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu,btAddCharacter1,btAddCharacter2,btAddCharacter3,btAddCharacter4,btAddCharacter5;
+	Button btmusic;
 	JSONObject data;
 	JSONArray problems,unknown;
 	JSONObject problem = new JSONObject();
@@ -43,9 +44,12 @@ public class MainApplet extends PApplet{
 	ControlFont f = new ControlFont(font,20);
 	boolean unknown_flag = false;
 	private String file = "src/resources/problems.json";
+	Music music = new Music();
+	PImage musicanimal1,musicanimal2;
+	int musicanimal=0;
+	int musicanimalx=300;
 	public void setup(){
 		ran=new Random();
-
 		monster=new ArrayList<PImage>();
 		character = loadImage("src/resources/img/character_1.png");
 		menu = loadImage("src/resources/main menu.png");
@@ -58,6 +62,8 @@ public class MainApplet extends PApplet{
 		ch4 = loadImage("src/resources/img/character_4.png");
 		ch5 = loadImage("src/resources/img/character_5.png");
 
+		musicanimal1 = loadImage("src/resources/Bing_bong_1.png");
+		musicanimal2 = loadImage("src/resources/Bing_bong_2.png");
 		for(j=1;j<=5;j++)
 		{
 			character2=loadImage("src/resources/img/monster_"+j+".png");
@@ -77,6 +83,15 @@ public class MainApplet extends PApplet{
 		btCharacter = cp5.addButton("btCharacter").setLabel("角色商店").setPosition(width/2, 480) .setSize(150, 50); 
 		btEnvironment = cp5.addButton("btEnvironment").setLabel("環境設定").setPosition(width/2, 540) .setSize(150, 50); 
 		btAbout = cp5.addButton("btAbout").setLabel("關於遊戲").setPosition(width/2, 600) .setSize(150, 50); 
+		
+		btmusic = cp5.addButton("btmusic").setLabel("音樂暫停").setPosition(300, 600) .setSize(400, 50);
+		cp5.getController("btmusic")
+	     .getCaptionLabel()
+	     .setFont(f)
+	     .toUpperCase(false)
+	     .setSize(24)
+	     ;
+		btmusic.hide();
 		
 		btBackToMenu = cp5.addButton("btBackToMenu").setLabel("返回").setPosition(800, 600) .setSize(150, 50);
 		cp5.getController("btBackToMenu")
@@ -172,6 +187,7 @@ public class MainApplet extends PApplet{
 		btEnvironment.hide();
 		btAbout.hide();
 		btBackToMenu.show();
+		
 
 	}
 	public void chButton(){ //get in 1-P
@@ -222,7 +238,7 @@ public class MainApplet extends PApplet{
 		btCharacter.show();
 		btEnvironment.show();
 		btAbout.show();
-		
+		btmusic.hide();
 		btBackToMenu.hide();
 		btAddCharacter1.hide();
 		btAddCharacter2.hide();
@@ -276,6 +292,7 @@ public class MainApplet extends PApplet{
 	}
 	public void btEnvironment(){ //Environment
 		flag=4;
+		btmusic.show();
 		addBackButton();
 		cp5.update();
 		
@@ -288,7 +305,21 @@ public class MainApplet extends PApplet{
 		
 		//draw();
 	}
-	
+	public void btmusic(){
+		if(music.sw==false)music.sw=true;
+			else music.sw=false;
+			//===================
+			if(music.sw==true){
+				music.clip.start();
+				btmusic.setCaptionLabel("音樂暫停");
+				//.setText("click to pause");
+			}
+			else {
+				music.clip.stop();
+				btmusic.setCaptionLabel("音樂開始");
+				//b.setText("click to start");
+			}
+	}
 	public void buttonA(){ //choose A
 		checkAnswer("A");
 		if(score!=0 && score%3==0)
@@ -362,6 +393,7 @@ public class MainApplet extends PApplet{
 	}
 	public void draw(){
 		background(255);
+		
 		if(flag==0){ //menu mode
 			image(menu,0,0,width,height);
 		}
@@ -395,6 +427,23 @@ public class MainApplet extends PApplet{
 
 		}else if(flag==4){ //Environment mode
 			image(environmentPage,0,0,width,height);
+			if(music.sw==true){	
+				musicanimal++;
+				
+				if(musicanimal<=30){
+					musicanimalx+=5;					
+				}else{
+					musicanimalx-=5;
+				}
+			}
+			
+			if(musicanimal<=30){
+				image(musicanimal1,musicanimalx,200,400,400);
+			}else{
+				image(musicanimal2,musicanimalx,200,400,400);
+			}
+			
+			if(musicanimal==60) musicanimal=0;
 			
 		}else if(flag==5){ //About mode
 			image(aboutPage,0,0,width,height);
