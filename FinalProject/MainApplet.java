@@ -487,8 +487,10 @@ public class MainApplet extends PApplet{
 					Ani.from(this,(float)1,"btx1",400,Ani.ELASTIC_OUT);
 				}
 			}
+			System.out.println("before: "+problem.getInt("total_count"));
 			total_count++;
 			problem.setInt("total_count",total_count);
+			System.out.println("after: "+problem.getInt("total_count"));
 			if(ans.equals("A"))
 			{
 				int count = problem.getInt("countA");
@@ -509,6 +511,8 @@ public class MainApplet extends PApplet{
 				int count = problem.getInt("countD");
 				problem.setInt("countD",++count);
 			}
+		
+			//this.saveJSONObject(data, file);
 		}
 		else
 		{

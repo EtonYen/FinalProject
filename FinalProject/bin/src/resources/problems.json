@@ -211,7 +211,7 @@
   ],
   "unknown": [
     {
-      "question": "abcacc",
+      "question": "abcacc1",
       "choiceA": "餅乾在空氣中潮解、變質",
 	  "choiceB": "鐵製品在空氣中漸漸生鏽",  
 	  "choiceC": "紙張在空氣中點火後迅速燃燒 ",
@@ -223,11 +223,11 @@
 	  "total_count": 0
     },
     {
-      "question": "abcabc",
-      "choiceA": "餅乾在空氣中潮解、變質",
-	  "choiceB": "鐵製品在空氣中漸漸生鏽",  
-	  "choiceC": "紙張在空氣中點火後迅速燃燒 ",
-	  "choiceD": "汽水開頻後置於空氣中一段時間，沒有氣泡",
+      "question": "下列何者不是將動素分成三大類的其中一類？",
+      "choiceA": "對工作無益之要素",
+	  "choiceB": "進行工作之要素",  
+	  "choiceC": "阻礙進行工作要素之進行",
+	  "choiceD": "實體性或生理性的。",
 	  "countA": 0,
 	  "countB": 0,  
 	  "countC": 0,
@@ -235,11 +235,11 @@
 	  "total_count": 0
     },
     {
-      "question": "abcabc",
-      "choiceA": "餅乾在空氣中潮解、變質",
-	  "choiceB": "鐵製品在空氣中漸漸生鏽",  
-	  "choiceC": "紙張在空氣中點火後迅速燃燒 ",
-	  "choiceD": "汽水開頻後置於空氣中一段時間，沒有氣泡",
+      "question": "有關於人機程序圖，下列何者敘述為非？",
+      "choiceA": "當人的工作週期比機器長時適用",
+	  "choiceB": "一人負責多部機器時適用",  
+	  "choiceC": "應利用閒置時間進行其他人工作業 ",
+	  "choiceD": "工作量提高，薪資亦應提高",
 	  "countA": 0,
 	  "countB": 0,  
 	  "countC": 0,
