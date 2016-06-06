@@ -18,7 +18,7 @@ public class MainApplet extends PApplet{
 	private static final long serialVersionUID = 1L;
 	private final static int width = 1000, height = 700;
 	private ControlP5 cp5;
-	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu,btAddCharacter;
+	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu,btAddCharacter1,btAddCharacter2,btAddCharacter3,btAddCharacter4,btAddCharacter5;
 	JSONObject data;
 	JSONArray problems;
 	JSONObject problem;
@@ -77,14 +77,50 @@ public class MainApplet extends PApplet{
 	     ;
 		btBackToMenu.hide();
 		
-		btAddCharacter = cp5.addButton("btAddCharacter").setLabel("新增角色").setPosition(800, 500) .setSize(150, 50);
-		cp5.getController("btAddCharacter")
+		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("新增角色1").setPosition(400, 250) .setSize(150, 50);
+		cp5.getController("btAddCharacter1")
 	     .getCaptionLabel()
 	     .setFont(f)
 	     .toUpperCase(false)
 	     .setSize(24)
 	     ;
-		btAddCharacter.hide();
+		btAddCharacter1.hide();
+		
+		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("新增角色2").setPosition(800, 250) .setSize(150, 50);
+		cp5.getController("btAddCharacter2")
+	     .getCaptionLabel()
+	     .setFont(f)
+	     .toUpperCase(false)
+	     .setSize(24)
+	     ;
+		btAddCharacter2.hide();
+		
+		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("新增角色3").setPosition(400, 500) .setSize(150, 50);
+		cp5.getController("btAddCharacter3")
+	     .getCaptionLabel()
+	     .setFont(f)
+	     .toUpperCase(false)
+	     .setSize(24)
+	     ;
+		btAddCharacter3.hide();
+		
+		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("新增角色4").setPosition(800, 500) .setSize(150, 50);
+		cp5.getController("btAddCharacter4")
+	     .getCaptionLabel()
+	     .setFont(f)
+	     .toUpperCase(false)
+	     .setSize(24)
+	     ;
+		btAddCharacter4.hide();
+		
+		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("新增角色").setPosition(400, 600) .setSize(150, 50);
+		cp5.getController("btAddCharacter5")
+	     .getCaptionLabel()
+	     .setFont(f)
+	     .toUpperCase(false)
+	     .setSize(24)
+	     ;
+		btAddCharacter5.hide();
 		
 		cp5.getController("btOne")
 	     .getCaptionLabel()
@@ -178,11 +214,29 @@ public class MainApplet extends PApplet{
 		btAbout.show();
 		
 		btBackToMenu.hide();
-		btAddCharacter.hide();
+		btAddCharacter1.hide();
+		btAddCharacter2.hide();
+		btAddCharacter3.hide();
+		btAddCharacter4.hide();
+		btAddCharacter5.hide();
+
 	}
-	public void btAddCharacter(){
+	public void btAddCharacter1(){
 		BlockImage puzzle = new BlockImage();
 	}
+	public void btAddCharacter2(){
+		BlockImage puzzle = new BlockImage();
+	}
+	public void btAddCharacter3(){
+		BlockImage puzzle = new BlockImage();
+	}
+	public void btAddCharacter4(){
+		BlockImage puzzle = new BlockImage();
+	}
+	public void btAddCharacter5(){
+		BlockImage puzzle = new BlockImage();
+	}
+	
 	public void btOne(){ //1-P
 		flag=1;
 		chButton();
@@ -200,7 +254,12 @@ public class MainApplet extends PApplet{
 	public void btCharacter(){ //Character
 		flag=3;
 		addBackButton();
-		btAddCharacter.show();
+		btAddCharacter1.show();
+		btAddCharacter2.show();
+		btAddCharacter3.show();
+		btAddCharacter4.show();
+		btAddCharacter5.show();
+
 		cp5.update();
 		
 		//draw();
