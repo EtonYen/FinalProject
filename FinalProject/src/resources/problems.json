@@ -209,16 +209,42 @@
 	  "answer": "D"
     }
   ],
-  "links": [
+  "unknown": [
     {
-      "source": 1,
-      "target": 0,
-      "value": 1
+      "question": "abcacc",
+      "choiceA": "餅乾在空氣中潮解、變質",
+	  "choiceB": "鐵製品在空氣中漸漸生鏽",  
+	  "choiceC": "紙張在空氣中點火後迅速燃燒 ",
+	  "choiceD": "汽水開頻後置於空氣中一段時間，沒有氣泡",
+	  "countA": 0,
+	  "countB": 0,  
+	  "countC": 0,
+	  "countD": 0,
+	  "total_count": 0
     },
     {
-      "source": 8,
-      "target": 14,
-      "value": 1
+      "question": "abcabc",
+      "choiceA": "餅乾在空氣中潮解、變質",
+	  "choiceB": "鐵製品在空氣中漸漸生鏽",  
+	  "choiceC": "紙張在空氣中點火後迅速燃燒 ",
+	  "choiceD": "汽水開頻後置於空氣中一段時間，沒有氣泡",
+	  "countA": 0,
+	  "countB": 0,  
+	  "countC": 0,
+	  "countD": 0,
+	  "total_count": 0
+    },
+    {
+      "question": "abcabc",
+      "choiceA": "餅乾在空氣中潮解、變質",
+	  "choiceB": "鐵製品在空氣中漸漸生鏽",  
+	  "choiceC": "紙張在空氣中點火後迅速燃燒 ",
+	  "choiceD": "汽水開頻後置於空氣中一段時間，沒有氣泡",
+	  "countA": 0,
+	  "countB": 0,  
+	  "countC": 0,
+	  "countD": 0,
+	  "total_count": 0
     }
   ]
 }

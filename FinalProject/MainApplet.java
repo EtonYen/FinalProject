@@ -1,5 +1,7 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Arrays;
 
 import javax.security.auth.callback.ChoiceCallback;
 
@@ -20,22 +22,23 @@ public class MainApplet extends PApplet{
 	private ControlP5 cp5;
 	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu,btAddCharacter1,btAddCharacter2,btAddCharacter3,btAddCharacter4,btAddCharacter5;
 	JSONObject data;
-	JSONArray problems;
-	JSONObject problem;
+	JSONArray problems,unknown;
+	JSONObject problem = new JSONObject();
 	String msg;
 	String answer;
 	Ani ani1,ani2;
 	int mx=300;
-	int score;
+	int score,total_count;
 	private int flag=0,chflag=0;
 	int btx1,bty1,btx2,bty2,btx3,bty3,btx4,bty4;
 	PFont font = createFont("標楷體",20);
 	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5;
 	int locationx=300,locationy=50;
 	ArrayList<PImage> monster;
-	private int i=0,j=0;
+	private int i=0,j=0,k=0;
 	Random ran;
 	ControlFont f = new ControlFont(font,20);
+	boolean unknown_flag = false;
 	private String file = "src/resources/problems.json";
 	public void setup(){
 		ran=new Random();
@@ -65,8 +68,7 @@ public class MainApplet extends PApplet{
 
 		score = 0;
 		loadData();
-		problem = problems.getJSONObject(0);
-		msg = problem.getString("question");
+		
 		btOne = cp5.addButton("btOne").setLabel("單人遊戲").setPosition(width/2, 360) .setSize(150, 50); 
 		btTwo = cp5.addButton("btTwo").setLabel("連線對戰").setPosition(width/2, 420) .setSize(150, 50); 
 		btCharacter = cp5.addButton("btCharacter").setLabel("角色商店").setPosition(width/2, 480) .setSize(150, 50); 
@@ -286,8 +288,18 @@ public class MainApplet extends PApplet{
 	
 	public void buttonA(){ //choose A
 		checkAnswer("A");
-		i++;
-		problem = problems.getJSONObject(i);
+		if(score!=0 && score%3==0)
+		{
+			unknown_flag = true;
+			k++;
+			problem = unknown.getJSONObject(k);
+		}
+		else
+		{
+			i++;
+			problem = problems.getJSONObject(i);
+		}
+		
 		btUpdate();
 		cp5.update();
 		
@@ -296,24 +308,51 @@ public class MainApplet extends PApplet{
 	}
 	public void buttonB(){ //choose B
 		checkAnswer("B");
-		i++;
-		problem = problems.getJSONObject(i);
+		if(score!=0 && score%3==0)
+		{
+			unknown_flag = true;
+			k++;
+			problem = unknown.getJSONObject(k);
+		}
+		else
+		{
+			i++;
+			problem = problems.getJSONObject(i);
+		}
 		btUpdate();
 		cp5.update();
 		
 	}
 	public void buttonC(){ //choose C
 		checkAnswer("C");
-		i++;
-		problem = problems.getJSONObject(i);
+		if(score!=0 && score%3==0)
+		{
+			unknown_flag = true;
+			k++;
+			problem = unknown.getJSONObject(k);
+		}
+		else
+		{
+			i++;
+			problem = problems.getJSONObject(i);
+		}
 		btUpdate();
 		cp5.update();
 		
 	}
 	public void buttonD(){ //choose D
 		checkAnswer("D");
-		i++;
-		problem = problems.getJSONObject(i);
+		if(score!=0 && score%3==0)
+		{
+			unknown_flag = true;
+			k++;
+			problem = unknown.getJSONObject(k);
+		}
+		else
+		{
+			i++;
+			problem = problems.getJSONObject(i);
+		}
 		btUpdate();
 		cp5.update();
 		
@@ -361,28 +400,120 @@ public class MainApplet extends PApplet{
 	}
 
 	public void checkAnswer(String ans){
-		answer = problem.getString("answer");
-		System.out.println(answer);
-		if(ans.equals(answer))
+		if(unknown_flag)
 		{
-			System.out.println("答對");
-			for(int i=0;i<=5;i++)
+			unknown_flag = false;
+			total_count = problem.getInt("total_count");
+			if(total_count<5)
 			{
-			Ani.to(this, (float)1, "locationx",400,Ani.ELASTIC_OUT);
-		
-			Ani.from(this,(float)1,"locationx",400,Ani.ELASTIC_OUT);
-			//System.out.println("a");
-			//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
+				
+				System.out.println("答對");
+				for(int i=0;i<=5;i++)
+				{
+				Ani.to(this, (float)1, "locationx",400,Ani.ELASTIC_OUT);
+			
+				Ani.from(this,(float)1,"locationx",400,Ani.ELASTIC_OUT);
+				//System.out.println("a");
+				//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
+				}
+				score++;
+				chflag=ran.nextInt(4);
 			}
-			score++;
-			chflag=ran.nextInt(4);
+			else
+			{
+				answer = maxchoice();
+				System.out.println(answer);
+				if(ans.equals(answer))
+				{
+					System.out.println("答對");
+					for(int i=0;i<=5;i++)
+					{
+					Ani.to(this, (float)1, "locationx",400,Ani.ELASTIC_OUT);
+				
+					Ani.from(this,(float)1,"locationx",400,Ani.ELASTIC_OUT);
+					//System.out.println("a");
+					//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
+					}
+					score++;
+					chflag=ran.nextInt(4);
+				}
+				else
+				{	
+					System.out.println("答錯");
+					Ani.to(this, (float)1, "btx1",400,Ani.ELASTIC_OUT);
+					Ani.from(this,(float)1,"btx1",400,Ani.ELASTIC_OUT);
+				}
+			}
+			total_count++;
+			problem.setInt("total_count",total_count);
+			if(ans.equals("A"))
+			{
+				int count = problem.getInt("countA");
+				problem.setInt("countA",++count);
+			}
+			else if(ans.equals("B"))
+			{
+				int count = problem.getInt("countB");
+				problem.setInt("countB",++count);
+			}
+			else if(ans.equals("C"))
+			{
+				int count = problem.getInt("countC");
+				problem.setInt("countC",++count);
+			}
+			else if(ans.equals("D"))
+			{
+				int count = problem.getInt("countD");
+				problem.setInt("countD",++count);
+			}
 		}
 		else
-		{	
-			System.out.println("答錯");
-			Ani.to(this, (float)1, "btx1",400,Ani.ELASTIC_OUT);
-			Ani.from(this,(float)1,"btx1",400,Ani.ELASTIC_OUT);
+		{
+			answer = problem.getString("answer");
+			System.out.println(answer);
+			if(ans.equals(answer))
+			{
+				System.out.println("答對");
+				for(int i=0;i<=5;i++)
+				{
+				Ani.to(this, (float)1, "locationx",400,Ani.ELASTIC_OUT);
+			
+				Ani.from(this,(float)1,"locationx",400,Ani.ELASTIC_OUT);
+				//System.out.println("a");
+				//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
+				}
+				score++;
+				chflag=ran.nextInt(4);
+			}
+			else
+			{	
+				System.out.println("答錯");
+				Ani.to(this, (float)1, "btx1",400,Ani.ELASTIC_OUT);
+				Ani.from(this,(float)1,"btx1",400,Ani.ELASTIC_OUT);
+			}
 		}
+		
+	}
+	private String maxchoice()
+	{
+		int[] countchoice;
+		countchoice = new int[4];
+		countchoice[0] = problem.getInt("countA");
+		countchoice[1] = problem.getInt("countB");
+		countchoice[2] = problem.getInt("countC");
+		countchoice[3] = problem.getInt("countD");
+		Arrays.sort(countchoice);
+		for(int index=0;index<4;index++)
+			System.out.println(countchoice[index]+" ");
+		if(countchoice[3]==problem.getInt("countA"))
+			return "A";
+		else if(countchoice[3]==problem.getInt("countB"))
+			return "B";
+		else if(countchoice[3]==problem.getInt("countC"))
+			return "C";
+		else
+			return "D";
+		
 	}
 	private void btUpdate(){ //update button index
 			buttonA.setLabel(problem.getString("choiceA"));
@@ -394,6 +525,9 @@ public class MainApplet extends PApplet{
 	private void loadData(){
 		data = loadJSONObject(file);
 		problems = data.getJSONArray("problems");
+		unknown = data.getJSONArray("unknown");
+		problem = problems.getJSONObject(0);
+		msg = problem.getString("question");
 		System.out.println("Number of nodes: " + problems.size());
 	}
 }
