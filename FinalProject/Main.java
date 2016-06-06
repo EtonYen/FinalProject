@@ -28,7 +28,7 @@ public class Main extends JFrame{
 		applet.start();
 		applet.setFocusable(true);
 		
-		JFrame window = new JFrame("Star Wars Network Analysis");
+		JFrame window = new JFrame("Smart Game");
 		window.setContentPane(applet);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setSize(windowWidth, windowHeight);
