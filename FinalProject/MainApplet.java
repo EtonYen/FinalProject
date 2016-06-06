@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.security.auth.callback.ChoiceCallback;
 
@@ -22,16 +23,19 @@ public class MainApplet extends PApplet{
 	Ani ani1,ani2;
 	int mx=300;
 	int score;
-	private int flag=0;
+	private int flag=0,chflag=0;
+	int btx1,bty1,btx2,bty2,btx3,bty3,btx4,bty4;
 	PFont font = createFont("¼Ð·¢Åé",20);
 	PImage character,character2,menu,characterPage,environmentPage,aboutPage;
 	int locationx=300,locationy=50;
 	ArrayList<PImage> monster;
 	private int i=0,j=0;
+	Random ran;
 	ControlFont f = new ControlFont(font,20);
 	private String file = "src/resources/problems.json";
 	public void setup(){
-		
+		ran=new Random();
+
 		monster=new ArrayList<PImage>();
 		character = loadImage("src/resources/img/character_1.png");
 		menu = loadImage("src/resources/main menu.png");
@@ -126,11 +130,11 @@ public class MainApplet extends PApplet{
 		btCharacter.hide();
 		btEnvironment.hide();
 		btAbout.hide();
-		
-		buttonA = cp5.addButton("buttonA").setLabel(problem.getString("choiceA")).setPosition(350, 420) .setSize(150, 50); 
-		buttonB = cp5.addButton("buttonB").setLabel(problem.getString("choiceB")).setPosition(350, 480) .setSize(150, 50); 
-		buttonC = cp5.addButton("buttonC").setLabel(problem.getString("choiceC")).setPosition(350, 540) .setSize(150, 50); 
-		buttonD = cp5.addButton("buttonD").setLabel(problem.getString("choiceD")).setPosition(350, 600) .setSize(150, 50); 
+		btx1=350;
+		buttonA = cp5.addButton("buttonA").setLabel(problem.getString("choiceA")).setPosition(btx1, 420) .setSize(150, 50); 
+		buttonB = cp5.addButton("buttonB").setLabel(problem.getString("choiceB")).setPosition(btx1, 480) .setSize(150, 50); 
+		buttonC = cp5.addButton("buttonC").setLabel(problem.getString("choiceC")).setPosition(btx1, 540) .setSize(150, 50); 
+		buttonD = cp5.addButton("buttonD").setLabel(problem.getString("choiceD")).setPosition(btx1, 600) .setSize(150, 50); 
 	
 		cp5.getController("buttonA")
 	     .getCaptionLabel()
@@ -255,12 +259,18 @@ public class MainApplet extends PApplet{
 		else if (flag==1){ //1-P mode
 			textFont(font,20);
 			fill(0);
-			image(monster.get(0),locationx,locationy,300,300);
+			
+			image(monster.get(chflag),locationx,locationy,300,300);
 			
 			line(0, height/2, width, height/2);
 			msg = problem.getString("question");
 			text(msg,20, 400);
 			text(score,width-50,height/2+20);
+			buttonA.setPosition(btx1, 420);
+			buttonB.setPosition(btx1, 480);
+			buttonC.setPosition(btx1,540);
+			buttonD.setPosition(btx1,600);
+			//updatebtn();
 		}
 		
 		else if(flag==2){ //2-P mode
@@ -274,6 +284,7 @@ public class MainApplet extends PApplet{
 
 		}
 	}
+
 	public void checkAnswer(String ans){
 		answer = problem.getString("answer");
 		System.out.println(answer);
@@ -289,11 +300,14 @@ public class MainApplet extends PApplet{
 			//Ani.to(this,(float)0.25,1,"locationx",290,Ani.LINEAR);
 			}
 			score++;
-			
+			chflag=ran.nextInt(4);
 		}
 		else
+		{	
 			System.out.println("µª¿ù");
-		
+			Ani.to(this, (float)1, "btx1",400,Ani.ELASTIC_OUT);
+			Ani.from(this,(float)1,"btx1",400,Ani.ELASTIC_OUT);
+		}
 	}
 	private void btUpdate(){ //update button index
 			buttonA.setLabel(problem.getString("choiceA"));
