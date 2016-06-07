@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		
+		public String username=new String();
 		private JLabel Jlb_ID = new JLabel("±b¸¹");
 	    private JLabel Jlb_PW = new JLabel("±K½X");
 	    private JTextField jid = new JTextField();
@@ -112,7 +112,8 @@ import javax.swing.JTextField;
 	                    System.out.println(jpw.getPassword());
 	                    if(jid.getText().equals(name) && pword.equals(String.valueOf(jpw.getPassword()))) {
 	                    	javax.swing.JOptionPane.showMessageDialog(null, "You are logged in!");
-	                        flag=true;
+	                    	username=name;
+	                    	flag=true;
 	                        break;
 	                    }                
 	                }
