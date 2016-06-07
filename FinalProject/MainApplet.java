@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
@@ -319,6 +323,68 @@ public class MainApplet extends PApplet{
 	}	
 	public void btTwo(){ //2-P
 		flag=2;
+		String []rankname=new String[5];
+		int []rankScore={0,0,0,0,0};
+		int x=0;
+		FileReader f_in = null;
+		//read file
+		try {
+			f_in = new FileReader("src/resources/rank.txt");		
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//x=0;
+		//use bufferedreader to put information in HashMap (for known and unknown words)
+		 try {  
+			 BufferedReader b_in =new BufferedReader(f_in);
+
+			 String line = new String();
+		     while ((line = b_in.readLine()) != null) {
+		    	String[] strs = new String[2];
+		    	strs = line.trim().split("\\s+");
+		    	if(x<5){
+		    		rankScore[x]=Integer.valueOf(strs[1]);
+		    		rankname[x]=strs[0];
+		    		x++;
+		    	}else{
+		    		int min=0;
+		    		for(int y=0;y<5;y++){
+		    			if(rankScore[min]>rankScore[y]){
+		    				min=y;
+		    			}
+		    		}
+		    		rankScore[min]=Integer.valueOf(strs[1]);
+		    		rankname [min]=strs[0];
+		    	}
+		     }
+		     String tmp=new String();
+		     int tmpx=0;
+		     for(int m=0;m<x;m++){
+		    	 for(int n=m;n<x;n++){
+		    		 if(rankScore[m]<rankScore[n]){
+		    			 tmpx=rankScore[m];
+		    			 rankScore[m]=rankScore[n];
+		    			 rankScore[n]=tmpx;
+		    			 
+		    			 tmp=rankname[m];
+		    			 rankname[m]=rankname[n];
+		    			 rankname[n]=tmp;
+		    		 }
+		    	 }
+		     }
+		     
+		     for(int y=0;y<x;y++){
+		    	 System.out.println((y+1)+". "+rankname [y]+" "+rankScore[y]);
+		     }
+		 }
+		 catch (IOException e) {	
+			System.out.println(e);
+		 }
+		
+		
+		
 		addBackButton();
 		cp5.update();
 		//draw();
