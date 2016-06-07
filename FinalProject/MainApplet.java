@@ -88,7 +88,7 @@ public class MainApplet extends PApplet{
 		btCharacter = cp5.addButton("btCharacter").setLabel("角色商店").setPosition(width/2, 380) .setSize(450, 70); 
 		btEnvironment = cp5.addButton("btEnvironment").setLabel("環境設定").setPosition(width/2, 460) .setSize(450, 70); 
 		btAbout = cp5.addButton("btAbout").setLabel("關於遊戲").setPosition(width/2, 540) .setSize(450, 70); 
-		btmusic = cp5.addButton("btmusic").setLabel("音樂暫停").setPosition(300, 620) .setSize(450, 70);
+		btmusic = cp5.addButton("btmusic").setLabel("音樂暫停").setPosition(330, 600) .setSize(400, 50);
 		cp5.getController("btmusic")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -191,6 +191,7 @@ public class MainApplet extends PApplet{
 		btEnvironment.hide();
 		btAbout.hide();
 		btBackToMenu.show();
+		
 
 	}
 	public void chButton(){ //get in 1-P
@@ -289,8 +290,7 @@ public class MainApplet extends PApplet{
 		cp5.update();
 		
 		//draw();
-	}
-	
+	}	
 	public void btTwo(){ //2-P
 		flag=2;
 		
@@ -415,6 +415,8 @@ public class MainApplet extends PApplet{
 		
 		if(flag==0){ //menu mode
 			image(menu,0,0,width,height);
+			fill(200);
+			rect(490, 210, 470, 410,10);
 		}
 		
 		else if (flag==1){ //1-P mode
