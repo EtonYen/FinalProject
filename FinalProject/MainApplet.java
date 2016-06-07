@@ -41,6 +41,7 @@ public class MainApplet extends PApplet{
 	ArrayList<PImage> monster;
 	private int i=0,j=0,k=0;
 	Random ran;
+	private String username = new String();
 	ControlFont f = new ControlFont(font,20);
 	boolean unknown_flag = false;
 	private String file = "src/resources/problems.json";
@@ -558,7 +559,10 @@ public class MainApplet extends PApplet{
 
 		}
 	}
-
+	public void setuser(String username){
+		this.username=username;
+		System.out.println(this.username);
+	} 	
 	public void checkAnswer(String ans){
 		flagflag=0;
 		if(unknown_flag)
