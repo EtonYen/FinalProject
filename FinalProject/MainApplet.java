@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
@@ -63,7 +65,7 @@ public class MainApplet extends PApplet{
 	int musicanimalx=300,menux=600;
 	int nowCharacter =1; int chgamerecord=1; 
 	int chlocationx=40;
-	int second = 10;
+	int second = 20;
 	int count = 0;
 	BlockImage puzzle;
 	boolean puzzlegame=false;
@@ -315,12 +317,24 @@ public class MainApplet extends PApplet{
 	}
 	
 	public void btOne(){ //1-P
-		second = 10;
+		second = 20;
 		timer1.schedule(new TimerTask() {
 			public void run() {
 				btBackToMenu();
+				FileWriter fw;
+				try {
+					fw = new FileWriter("src/resources/rank.txt",true);
+					fw.append(username+" "+score+"\n");
+					fw.flush();
+					fw.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				score = 0;
 			}
-		}, 11000);
+		}, 22000);
 		
 		flag=1;
 		chButton();
