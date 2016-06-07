@@ -83,13 +83,12 @@ public class MainApplet extends PApplet{
 		score = 0;
 		loadData();
 		
-		btOne = cp5.addButton("btOne").setLabel("單人遊戲").setPosition(width/2, 360) .setSize(150, 50); 
-		btTwo = cp5.addButton("btTwo").setLabel("連線對戰").setPosition(width/2, 420) .setSize(150, 50); 
-		btCharacter = cp5.addButton("btCharacter").setLabel("角色商店").setPosition(width/2, 480) .setSize(150, 50); 
-		btEnvironment = cp5.addButton("btEnvironment").setLabel("環境設定").setPosition(width/2, 540) .setSize(150, 50); 
-		btAbout = cp5.addButton("btAbout").setLabel("關於遊戲").setPosition(width/2, 600) .setSize(150, 50); 
-		
-		btmusic = cp5.addButton("btmusic").setLabel("音樂暫停").setPosition(300, 600) .setSize(400, 50);
+		btOne = cp5.addButton("btOne").setLabel("單人遊戲").setPosition(width/2, 220) .setSize(450, 70); 
+		btTwo = cp5.addButton("btTwo").setLabel("連線對戰").setPosition(width/2, 300) .setSize(450, 70); 
+		btCharacter = cp5.addButton("btCharacter").setLabel("角色商店").setPosition(width/2, 380) .setSize(450, 70); 
+		btEnvironment = cp5.addButton("btEnvironment").setLabel("環境設定").setPosition(width/2, 460) .setSize(450, 70); 
+		btAbout = cp5.addButton("btAbout").setLabel("關於遊戲").setPosition(width/2, 540) .setSize(450, 70); 
+		btmusic = cp5.addButton("btmusic").setLabel("音樂暫停").setPosition(300, 620) .setSize(450, 70);
 		cp5.getController("btmusic")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -192,7 +191,6 @@ public class MainApplet extends PApplet{
 		btEnvironment.hide();
 		btAbout.hide();
 		btBackToMenu.show();
-		
 
 	}
 	public void chButton(){ //get in 1-P
