@@ -31,10 +31,12 @@ public class MainApplet extends PApplet{
 	String answer;
 	Ani ani1,ani2;
 	int mx=300;
+	TimerTask task;
 	int score,total_count;
 	private int flag=0,chflag=0,preflag=0,flagflag=0;
 	Timer timer=new Timer();
 	Timer timer1=new Timer();
+	Timer timer2=new Timer();
 	int btx1,bty1,btx2,bty2,btx3,bty3,btx4,bty4;
 	PFont font = createFont("º–∑¢≈È",20);
 	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5,nowch;
@@ -52,9 +54,12 @@ public class MainApplet extends PApplet{
 	int musicanimalx=300,menux=600;
 	int nowCharacter =1; int chgamerecord=1; 
 	int chlocationx=40;
+	int second = 10;
+	int count = 0;
 	BlockImage puzzle;
 	boolean puzzlegame=false;
 	public void setup(){
+		second = 10;
 		ran=new Random();
 		monster=new ArrayList<PImage>();
 		character = loadImage("src/resources/img/character_1.png");
@@ -70,7 +75,6 @@ public class MainApplet extends PApplet{
 		ch5 = loadImage("src/resources/img/character_5.png");
 		nowch = ch1;
 		gamebackground = loadImage("src/resources/gamebackground.jpg");
-		
 		musicanimal1 = loadImage("src/resources/Bing_bong_1.png");
 		musicanimal2 = loadImage("src/resources/Bing_bong_2.png");
 		for(j=1;j<=5;j++)
@@ -219,12 +223,6 @@ public class MainApplet extends PApplet{
 	     .setSize(24)
 	     ;
 
-		timer1.schedule(new TimerTask() {
-			public void run() {
-				btBackToMenu();
-				
-			}
-	}, 3000);
 
 		buttonA.hide();
 		buttonB.hide();
@@ -308,6 +306,13 @@ public class MainApplet extends PApplet{
 	}
 	
 	public void btOne(){ //1-P
+		second = 10;
+		timer1.schedule(new TimerTask() {
+			public void run() {
+				btBackToMenu();
+			}
+		}, 11000);
+		
 		flag=1;
 		chButton();
 		btUpdate();	
@@ -466,7 +471,14 @@ public class MainApplet extends PApplet{
 			
 			textFont(font,20);
 			fill(0);
-			
+			text(second,width-50,20);
+			count++;
+			System.out.println(count);
+			if(count==18)
+			{
+				count = 0;
+				second--;
+			}
 			image(monster.get(preflag),locationx,locationy,300,300);
 			
 			line(0, height/2, width, height/2);
