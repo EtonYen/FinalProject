@@ -45,7 +45,7 @@ public class MainApplet extends PApplet{
 	boolean unknown_flag = false;
 	private String file = "src/resources/problems.json";
 	Music music = new Music();
-	PImage musicanimal1,musicanimal2,gamebackground;
+	PImage musicanimal1,musicanimal2,gamebackground,rankbackground;
 	int musicanimal=0,menuani=0;
 	int musicanimalx=300,menux=600;
 	int nowCharacter =1; int chgamerecord=1; 
@@ -57,6 +57,7 @@ public class MainApplet extends PApplet{
 		monster=new ArrayList<PImage>();
 		character = loadImage("src/resources/img/character_1.png");
 		menu = loadImage("src/resources/main menu.png");
+		rankbackground = loadImage("src/resources/rank.png");
 		characterPage = loadImage("src/resources/shop.png");
 		environmentPage = loadImage("src/resources/setting.png");
 		aboutPage = loadImage("src/resources/about.png");
@@ -67,6 +68,7 @@ public class MainApplet extends PApplet{
 		ch5 = loadImage("src/resources/img/character_5.png");
 		nowch = ch1;
 		gamebackground = loadImage("src/resources/gamebackground.jpg");
+		
 		musicanimal1 = loadImage("src/resources/Bing_bong_1.png");
 		musicanimal2 = loadImage("src/resources/Bing_bong_2.png");
 		for(j=1;j<=5;j++)
@@ -84,7 +86,7 @@ public class MainApplet extends PApplet{
 		loadData();
 		
 		btOne = cp5.addButton("btOne").setLabel("單人遊戲").setPosition(width/2, 220) .setSize(450, 70); 
-		btTwo = cp5.addButton("btTwo").setLabel("連線對戰").setPosition(width/2, 300) .setSize(450, 70); 
+		btTwo = cp5.addButton("btTwo").setLabel("遊戲排名").setPosition(width/2, 300) .setSize(450, 70); 
 		btCharacter = cp5.addButton("btCharacter").setLabel("角色商店").setPosition(width/2, 380) .setSize(450, 70); 
 		btEnvironment = cp5.addButton("btEnvironment").setLabel("環境設定").setPosition(width/2, 460) .setSize(450, 70); 
 		btAbout = cp5.addButton("btAbout").setLabel("關於遊戲").setPosition(width/2, 540) .setSize(450, 70); 
@@ -293,7 +295,8 @@ public class MainApplet extends PApplet{
 	}	
 	public void btTwo(){ //2-P
 		flag=2;
-		
+		addBackButton();
+		cp5.update();
 		//draw();
 	}
 	public void btCharacter(){ //Character
@@ -469,6 +472,7 @@ public class MainApplet extends PApplet{
 		}
 		
 		else if(flag==2){ //2-P mode
+			image(rankbackground,0,0,width,height);
 			
 		}else if(flag==3){ //Character mode
 			
