@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import java.util.Arrays;
 
 import javax.security.auth.callback.ChoiceCallback;
+import javax.sound.sampled.Clip;
 
 import controlP5.*;
 import de.looksgood.ani.Ani;
@@ -348,6 +349,7 @@ public class MainApplet extends PApplet{
 			//===================
 			if(music.sw==true){
 				music.clip.start();
+				music.clip.loop(Clip.LOOP_CONTINUOUSLY);
 				btmusic.setCaptionLabel("­µ¼Ö¼È°±");
 				//.setText("click to pause");
 			}
