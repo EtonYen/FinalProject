@@ -9,6 +9,7 @@ public class Main extends JFrame{
 
 	public static void main(String[] args)throws IOException {
 		Frame login = new Frame();
+		String name=new String();
 		// TODO Auto-generated method stub	
 		while(login.flag==false){
 			try {
@@ -19,11 +20,13 @@ public class Main extends JFrame{
 			}
 			//System.out.println(login.flag);
 		}
-		System.out.println("hihihihi");
+		name=login.username;
+		//System.out.println("hihihihi");
 		login.dispose();
-		System.out.println("hihihihi");
+		//System.out.println("hihihihi");
 		login.setVisible(false);
 		MainApplet applet = new MainApplet();
+		applet.setuser(name);
 		applet.init();
 		applet.start();
 		applet.setFocusable(true);

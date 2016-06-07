@@ -23,6 +23,7 @@ public class MainApplet extends PApplet{
 	private final static int width = 1000, height = 700;
 	private ControlP5 cp5;
 	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu,btAddCharacter1,btAddCharacter2,btAddCharacter3,btAddCharacter4,btAddCharacter5;
+	Button btmusic;
 	JSONObject data;
 	JSONArray problems,unknown;
 	JSONObject problem = new JSONObject();
@@ -36,20 +37,29 @@ public class MainApplet extends PApplet{
 	Timer timer1=new Timer();
 	int btx1,bty1,btx2,bty2,btx3,bty3,btx4,bty4;
 	PFont font = createFont("標楷體",20);
-	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5;
+	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5,nowch;
 	int locationx=300,locationy=50;
 	ArrayList<PImage> monster;
 	private int i=0,j=0,k=0;
 	Random ran;
+	private String username = new String();
 	ControlFont f = new ControlFont(font,20);
 	boolean unknown_flag = false;
 	private String file = "src/resources/problems.json";
+	Music music = new Music();
+	PImage musicanimal1,musicanimal2,gamebackground,rankbackground;
+	int musicanimal=0,menuani=0;
+	int musicanimalx=300,menux=600;
+	int nowCharacter =1; int chgamerecord=1; 
+	int chlocationx=40;
+	BlockImage puzzle;
+	boolean puzzlegame=false;
 	public void setup(){
 		ran=new Random();
-
 		monster=new ArrayList<PImage>();
 		character = loadImage("src/resources/img/character_1.png");
 		menu = loadImage("src/resources/main menu.png");
+		rankbackground = loadImage("src/resources/rank.png");
 		characterPage = loadImage("src/resources/shop.png");
 		environmentPage = loadImage("src/resources/setting.png");
 		aboutPage = loadImage("src/resources/about.png");
@@ -58,7 +68,11 @@ public class MainApplet extends PApplet{
 		ch3 = loadImage("src/resources/img/character_3.png");
 		ch4 = loadImage("src/resources/img/character_4.png");
 		ch5 = loadImage("src/resources/img/character_5.png");
-
+		nowch = ch1;
+		gamebackground = loadImage("src/resources/gamebackground.jpg");
+		
+		musicanimal1 = loadImage("src/resources/Bing_bong_1.png");
+		musicanimal2 = loadImage("src/resources/Bing_bong_2.png");
 		for(j=1;j<=5;j++)
 		{
 			character2=loadImage("src/resources/img/monster_"+j+".png");
@@ -73,11 +87,19 @@ public class MainApplet extends PApplet{
 		score = 0;
 		loadData();
 		
-		btOne = cp5.addButton("btOne").setLabel("單人遊戲").setPosition(width/2, 360) .setSize(150, 50); 
-		btTwo = cp5.addButton("btTwo").setLabel("連線對戰").setPosition(width/2, 420) .setSize(150, 50); 
-		btCharacter = cp5.addButton("btCharacter").setLabel("角色商店").setPosition(width/2, 480) .setSize(150, 50); 
-		btEnvironment = cp5.addButton("btEnvironment").setLabel("環境設定").setPosition(width/2, 540) .setSize(150, 50); 
-		btAbout = cp5.addButton("btAbout").setLabel("關於遊戲").setPosition(width/2, 600) .setSize(150, 50); 
+		btOne = cp5.addButton("btOne").setLabel("單人遊戲").setPosition(width/2, 220) .setSize(450, 70); 
+		btTwo = cp5.addButton("btTwo").setLabel("遊戲排名").setPosition(width/2, 300) .setSize(450, 70); 
+		btCharacter = cp5.addButton("btCharacter").setLabel("角色商店").setPosition(width/2, 380) .setSize(450, 70); 
+		btEnvironment = cp5.addButton("btEnvironment").setLabel("環境設定").setPosition(width/2, 460) .setSize(450, 70); 
+		btAbout = cp5.addButton("btAbout").setLabel("關於遊戲").setPosition(width/2, 540) .setSize(450, 70); 
+		btmusic = cp5.addButton("btmusic").setLabel("音樂暫停").setPosition(330, 600) .setSize(400, 50);
+		cp5.getController("btmusic")
+	     .getCaptionLabel()
+	     .setFont(f)
+	     .toUpperCase(false)
+	     .setSize(24)
+	     ;
+		btmusic.hide();
 		
 		btBackToMenu = cp5.addButton("btBackToMenu").setLabel("返回").setPosition(800, 600) .setSize(150, 50);
 		cp5.getController("btBackToMenu")
@@ -88,7 +110,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btBackToMenu.hide();
 		
-		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("新增角色 1").setPosition(360, 360) .setSize(150, 50);
+		btAddCharacter1 = cp5.addButton("btAddCharacter1").setLabel("更改角色 1").setPosition(360, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter1")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -97,7 +119,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter1.hide();
 		
-		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("新增角色 2").setPosition(580, 360) .setSize(150, 50);
+		btAddCharacter2 = cp5.addButton("btAddCharacter2").setLabel("更改角色 2").setPosition(580, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter2")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -106,7 +128,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter2.hide();
 		
-		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("新增角色 3").setPosition(800, 360) .setSize(150, 50);
+		btAddCharacter3 = cp5.addButton("btAddCharacter3").setLabel("更改角色 3").setPosition(800, 360) .setSize(150, 50);
 		cp5.getController("btAddCharacter3")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -115,7 +137,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter3.hide();
 		
-		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("新增角色 4").setPosition(360, 600) .setSize(150, 50);
+		btAddCharacter4 = cp5.addButton("btAddCharacter4").setLabel("更改角色 4").setPosition(360, 600) .setSize(150, 50);
 		cp5.getController("btAddCharacter4")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -124,7 +146,7 @@ public class MainApplet extends PApplet{
 	     ;
 		btAddCharacter4.hide();
 		
-		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("新增角色 5").setPosition(580, 600) .setSize(150, 50);
+		btAddCharacter5 = cp5.addButton("btAddCharacter5").setLabel("更改角色 5").setPosition(580, 600) .setSize(150, 50);
 		cp5.getController("btAddCharacter5")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -164,29 +186,11 @@ public class MainApplet extends PApplet{
 	     .toUpperCase(false)
 	     .setSize(24)
 	     ;
-			
-	}
-	public void addBackButton(){
-		btOne.hide();
-		btTwo.hide();
-		btCharacter.hide();
-		btEnvironment.hide();
-		btAbout.hide();
-		btBackToMenu.show();
-
-	}
-	public void chButton(){ //get in 1-P
-		btOne.hide();
-		btTwo.hide();
-		btCharacter.hide();
-		btEnvironment.hide();
-		btAbout.hide();
-		btx1=350;
+		
 		buttonA = cp5.addButton("buttonA").setLabel(problem.getString("choiceA")).setPosition(btx1, 420) .setSize(350, 50); 
 		buttonB = cp5.addButton("buttonB").setLabel(problem.getString("choiceB")).setPosition(btx1, 480) .setSize(350, 50); 
 		buttonC = cp5.addButton("buttonC").setLabel(problem.getString("choiceC")).setPosition(btx1, 540) .setSize(350, 50); 
 		buttonD = cp5.addButton("buttonD").setLabel(problem.getString("choiceD")).setPosition(btx1, 600) .setSize(350, 50); 
-	
 		cp5.getController("buttonA")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -214,12 +218,42 @@ public class MainApplet extends PApplet{
 	     .toUpperCase(false)
 	     .setSize(24)
 	     ;
+
 		timer1.schedule(new TimerTask() {
 			public void run() {
 				btBackToMenu();
 				
 			}
 	}, 3000);
+
+		buttonA.hide();
+		buttonB.hide();
+		buttonC.hide();
+		buttonD.hide();
+	}
+	public void addBackButton(){
+		btOne.hide();
+		btTwo.hide();
+		btCharacter.hide();
+		btEnvironment.hide();
+		btAbout.hide();
+		btBackToMenu.show();
+		
+
+	}
+	public void chButton(){ //get in 1-P
+		btOne.hide();
+		btTwo.hide();
+		btCharacter.hide();
+		btEnvironment.hide();
+		btAbout.hide();
+		btx1=350;
+		
+		buttonA.show();
+		buttonB.show();
+		buttonC.show();
+		buttonD.show();
+		btBackToMenu.show();
 	
 	}
 	public void btBackToMenu(){
@@ -229,47 +263,63 @@ public class MainApplet extends PApplet{
 		btCharacter.show();
 		btEnvironment.show();
 		btAbout.show();
-		
+		btmusic.hide();
 		btBackToMenu.hide();
 		btAddCharacter1.hide();
 		btAddCharacter2.hide();
 		btAddCharacter3.hide();
 		btAddCharacter4.hide();
 		btAddCharacter5.hide();
+
 		buttonA.hide();
 		buttonB.hide();
 		buttonC.hide();
 		buttonD.hide();
-
 	}
 	public void btAddCharacter1(){
-		BlockImage puzzle = new BlockImage("1");
+		//BlockImage puzzle = new BlockImage("1");
+		puzzle = new BlockImage("1");
+		chgamerecord=1;
+		puzzlegame=true;
 	}
 	public void btAddCharacter2(){
-		BlockImage puzzle = new BlockImage("2");
+		//BlockImage puzzle = new BlockImage("2");
+		puzzle = new BlockImage("2");
+		chgamerecord=2;
+		puzzlegame=true;
 	}
 	public void btAddCharacter3(){
-		BlockImage puzzle = new BlockImage("3");
+		//BlockImage puzzle = new BlockImage("3");
+		puzzle = new BlockImage("3");
+		chgamerecord=3;
+		puzzlegame=true;
 	}
 	public void btAddCharacter4(){
-		BlockImage puzzle = new BlockImage("4");
+		//BlockImage puzzle = new BlockImage("4");
+		puzzle = new BlockImage("4");
+		chgamerecord=4;
+		puzzlegame=true;
 	}
 	public void btAddCharacter5(){
-		BlockImage puzzle = new BlockImage("5");
+		//BlockImage puzzle = new BlockImage("5");
+		puzzle = new BlockImage("5");
+		chgamerecord=5;
+		puzzlegame=true;
 	}
 	
 	public void btOne(){ //1-P
 		flag=1;
 		chButton();
-		btUpdate();
+		btUpdate();	
+		
 		cp5.update();
 		
 		//draw();
-	}
-	
+	}	
 	public void btTwo(){ //2-P
 		flag=2;
-		
+		addBackButton();
+		cp5.update();
 		//draw();
 	}
 	public void btCharacter(){ //Character
@@ -287,6 +337,7 @@ public class MainApplet extends PApplet{
 	}
 	public void btEnvironment(){ //Environment
 		flag=4;
+		btmusic.show();
 		addBackButton();
 		cp5.update();
 		
@@ -299,7 +350,21 @@ public class MainApplet extends PApplet{
 		
 		//draw();
 	}
-	
+	public void btmusic(){
+		if(music.sw==false)music.sw=true;
+			else music.sw=false;
+			//===================
+			if(music.sw==true){
+				music.clip.start();
+				btmusic.setCaptionLabel("音樂暫停");
+				//.setText("click to pause");
+			}
+			else {
+				music.clip.stop();
+				btmusic.setCaptionLabel("音樂開始");
+				//b.setText("click to start");
+			}
+	}
 	public void buttonA(){ //choose A
 		checkAnswer("A");
 		if(score!=0 && score%3==0)
@@ -373,11 +438,32 @@ public class MainApplet extends PApplet{
 	}
 	public void draw(){
 		background(255);
+		
 		if(flag==0){ //menu mode
 			image(menu,0,0,width,height);
+			if(true){	
+				menuani++;
+				
+				if(menuani<=30){
+					menux+=1;					
+				}else{
+					menux-=1;
+				}
+			}
+			
+			image(ch1,10,menux,180,200);
+			image(ch2,210,menux,180,200);
+			image(ch3,410,menux,180,200);
+			image(ch4,610,menux,180,200);
+			image(ch5,810,menux,180,200);
+			if(menuani==60) menuani=0;
+			fill(200);
+			rect(490, 210, 470, 410,10);
 		}
 		
 		else if (flag==1){ //1-P mode
+			image(gamebackground,0,0,width,height);
+			
 			textFont(font,20);
 			fill(0);
 			
@@ -392,27 +478,99 @@ public class MainApplet extends PApplet{
 			buttonC.setPosition(btx1,540);
 			buttonD.setPosition(btx1,600);
 			//updatebtn();
+			
+			image(nowch,chlocationx,200,140,140);
+			/*
+			if(nowCharacter==1){
+				image(ch1,chlocationx,420,300,300);
+			}else if(nowCharacter==2){
+				image(ch2,chlocationx,420,300,280);
+			}else if(nowCharacter==3){
+				image(ch3,chlocationx,420,300,280);
+			}else if(nowCharacter==4){
+				image(ch4,chlocationx,420,300,280);
+			}else{
+				image(ch5,chlocationx,420,300,300);
+			}*/
 		}
 		
 		else if(flag==2){ //2-P mode
+			image(rankbackground,0,0,width,height);
 			
 		}else if(flag==3){ //Character mode
+			
+			if(puzzlegame==true){
+				
+				
+				if(chgamerecord==1 && puzzle.win==true){
+					nowCharacter = 1;
+					nowch=ch1;
+					puzzle.win=false;
+				}else if(chgamerecord==2 && puzzle.win==true){
+					nowCharacter = 2;
+					nowch=ch2;
+					puzzle.win=false;
+					//System.out.print("11");
+				}else if(chgamerecord==3 && puzzle.win==true){
+					nowCharacter = 3;
+					nowch=ch3;
+					puzzle.win=false;
+				}else if(chgamerecord==4 && puzzle.win==true){
+					nowCharacter = 4;
+					nowch=ch4;
+					puzzle.win=false;
+				}else if(chgamerecord==5 && puzzle.win==true){
+					nowCharacter = 5;
+					nowch=ch5;
+					puzzle.win=false;
+				}		
+			}
+			
+			
 			image(characterPage,0,0,width,height);
 			image(ch1,360,200,150,150);
 			image(ch2,590,200,140,150);
 			image(ch3,810,200,140,150);
 			image(ch4,360,450,140,150);
 			image(ch5,580,450,150,150);
-
+			
+			fill(200);
+			rect(55, 210, 210, 260,10);
+			fill(10);
+			text("目前角色",110, 250);
+			
+			image(nowch,65,270,200,200);
+			
+			
 		}else if(flag==4){ //Environment mode
 			image(environmentPage,0,0,width,height);
+			if(music.sw==true){	
+				musicanimal++;
+				
+				if(musicanimal<=30){
+					musicanimalx+=5;					
+				}else{
+					musicanimalx-=5;
+				}
+			}
+			
+			if(musicanimal<=30){
+				image(musicanimal1,musicanimalx,200,400,400);
+			}else{
+				image(musicanimal2,musicanimalx,200,400,400);
+			}
+			
+			if(musicanimal==60) musicanimal=0;
 			
 		}else if(flag==5){ //About mode
 			image(aboutPage,0,0,width,height);
 
 		}
 	}
-
+	public void setuser(String username){
+		this.username=username;
+		System.out.println(this.username);
+	} 	
 	public void checkAnswer(String ans){
 		flagflag=0;
 		if(unknown_flag)

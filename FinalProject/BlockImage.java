@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 
 public class BlockImage extends Canvas {
         
@@ -28,12 +27,12 @@ public class BlockImage extends Canvas {
         private Image screen = null;
         private int _objWidth,_objHeight;
         private int _COUNT;
-        
+        boolean winornot=false;
         //===================================
         private boolean odd=false;//initial 0
         private int temp = 0;
         private int k=0,l=0,m=0,n=0;
-        static private boolean win = false;
+        static public boolean win = false;
         //===================================
 
         static private Frame frm;
@@ -130,6 +129,7 @@ public class BlockImage extends Canvas {
                         }
                         else{
                         	System.out.println("win!!!!!!!");
+                        	win = true;
                         	//frm.dispose();
                         }
                 }
@@ -159,7 +159,7 @@ public class BlockImage extends Canvas {
     		else odd = true ;
     		//=============================================
     		//do things in different condition
-    		System.out.println("odd->"+odd);
+    		//System.out.println("odd->"+odd);
     		
     		if(odd==true){
     			//first click
