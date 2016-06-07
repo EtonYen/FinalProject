@@ -27,6 +27,10 @@ public class MainApplet extends PApplet{
 	private static final long serialVersionUID = 1L;
 	private final static int width = 1000, height = 700;
 	private ControlP5 cp5;
+	String []rankname=new String[5];
+	int []rankScore={0,0,0,0,0};
+	int x=0;
+	
 	Button buttonA,buttonB,buttonC,buttonD,btOne,btTwo,btCharacter,btEnvironment,btAbout,btBackToMenu,btAddCharacter1,btAddCharacter2,btAddCharacter3,btAddCharacter4,btAddCharacter5;
 	Button btmusic;
 	JSONObject data;
@@ -323,9 +327,7 @@ public class MainApplet extends PApplet{
 	}	
 	public void btTwo(){ //2-P
 		flag=2;
-		String []rankname=new String[5];
-		int []rankScore={0,0,0,0,0};
-		int x=0;
+		x=0;
 		FileReader f_in = null;
 		//read file
 		try {
@@ -565,6 +567,13 @@ public class MainApplet extends PApplet{
 		else if(flag==2){ //2-P mode
 			image(rankbackground,0,0,width,height);
 			
+			fill(255);
+			
+			for(int y=0;y<x;y++){
+				textSize(32);
+				text("第"+(y+1)+"名. "+rankname[y]+" "+rankScore[y],350, 250+(y*40));
+			}
+			
 		}else if(flag==3){ //Character mode
 			
 			if(puzzlegame==true){
@@ -605,7 +614,7 @@ public class MainApplet extends PApplet{
 			fill(200);
 			rect(55, 210, 210, 260,10);
 			fill(10);
-			text("目前角色",110, 250);
+			text("目前角色",100, 250);
 			
 			image(nowch,65,270,200,200);
 			
