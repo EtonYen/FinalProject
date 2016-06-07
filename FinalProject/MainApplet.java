@@ -33,6 +33,7 @@ public class MainApplet extends PApplet{
 	int score,total_count;
 	private int flag=0,chflag=0,preflag=0,flagflag=0;
 	Timer timer=new Timer();
+	Timer timer1=new Timer();
 	int btx1,bty1,btx2,bty2,btx3,bty3,btx4,bty4;
 	PFont font = createFont("º–∑¢≈È",20);
 	PImage character,character2,menu,characterPage,environmentPage,aboutPage,ch1,ch2,ch3,ch4,ch5;
@@ -213,6 +214,12 @@ public class MainApplet extends PApplet{
 	     .toUpperCase(false)
 	     .setSize(24)
 	     ;
+		timer1.schedule(new TimerTask() {
+			public void run() {
+				btBackToMenu();
+				
+			}
+	}, 3000);
 	
 	}
 	public void btBackToMenu(){
@@ -229,6 +236,10 @@ public class MainApplet extends PApplet{
 		btAddCharacter3.hide();
 		btAddCharacter4.hide();
 		btAddCharacter5.hide();
+		buttonA.hide();
+		buttonB.hide();
+		buttonC.hide();
+		buttonD.hide();
 
 	}
 	public void btAddCharacter1(){
