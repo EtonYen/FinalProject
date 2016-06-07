@@ -1,3 +1,5 @@
 abc 10
 kok 9
-ee 6
+ee 3
+a 4
+a 4

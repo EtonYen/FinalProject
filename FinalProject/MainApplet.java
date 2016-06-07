@@ -284,6 +284,7 @@ public class MainApplet extends PApplet{
 		buttonB.hide();
 		buttonC.hide();
 		buttonD.hide();
+		//timer1.cancel();
 	}
 	public void btAddCharacter1(){
 		//BlockImage puzzle = new BlockImage("1");
@@ -320,7 +321,7 @@ public class MainApplet extends PApplet{
 		second = 20;
 		timer1.schedule(new TimerTask() {
 			public void run() {
-				btBackToMenu();
+				
 				FileWriter fw;
 				try {
 					fw = new FileWriter("src/resources/rank.txt",true);
@@ -333,8 +334,9 @@ public class MainApplet extends PApplet{
 				}
 				
 				score = 0;
+				btBackToMenu();
 			}
-		}, 22000);
+		}, 19000);
 		
 		flag=1;
 		chButton();
@@ -397,7 +399,7 @@ public class MainApplet extends PApplet{
 		     }
 		     
 		     for(int y=0;y<x;y++){
-		    	 System.out.println((y+1)+". "+rankname [y]+" "+rankScore[y]);
+		    	// System.out.println((y+1)+". "+rankname [y]+" "+rankScore[y]);
 		     }
 		 }
 		 catch (IOException e) {	
@@ -557,8 +559,8 @@ public class MainApplet extends PApplet{
 			fill(0);
 			text(second,width-50,20);
 			count++;
-			System.out.println(count);
-			if(count==18)
+			//System.out.println(count);
+			if(count==14)
 			{
 				count = 0;
 				second--;
@@ -672,7 +674,7 @@ public class MainApplet extends PApplet{
 	}
 	public void setuser(String username){
 		this.username=username;
-		System.out.println(this.username);
+		//System.out.println(this.username);
 	} 	
 	public void checkAnswer(String ans){
 		flagflag=0;
