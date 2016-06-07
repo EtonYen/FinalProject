@@ -46,8 +46,8 @@ public class MainApplet extends PApplet{
 	private String file = "src/resources/problems.json";
 	Music music = new Music();
 	PImage musicanimal1,musicanimal2,gamebackground;
-	int musicanimal=0;
-	int musicanimalx=300;
+	int musicanimal=0,menuani=0;
+	int musicanimalx=300,menux=600;
 	int nowCharacter =1; int chgamerecord=1; 
 	int chlocationx=40;
 	BlockImage puzzle;
@@ -415,6 +415,24 @@ public class MainApplet extends PApplet{
 		
 		if(flag==0){ //menu mode
 			image(menu,0,0,width,height);
+			if(true){	
+				menuani++;
+				
+				if(menuani<=30){
+					menux+=1;					
+				}else{
+					menux-=1;
+				}
+			}
+			
+			image(ch1,10,menux,180,200);
+			image(ch2,210,menux,180,200);
+			image(ch3,410,menux,180,200);
+			image(ch4,610,menux,180,200);
+			image(ch5,810,menux,180,200);
+			
+			
+			if(menuani==60) menuani=0;
 		}
 		
 		else if (flag==1){ //1-P mode
