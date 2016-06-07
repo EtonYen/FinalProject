@@ -491,6 +491,13 @@ public class MainApplet extends PApplet{
 			image(ch4,360,450,140,150);
 			image(ch5,580,450,150,150);
 			
+			fill(200);
+			rect(55, 210, 210, 260,10);
+			fill(10);
+			text("¥Ø«e¨¤¦â",110, 250);
+			
+			image(nowch,65,270,200,200);
+			
 			
 		}else if(flag==4){ //Environment mode
 			image(environmentPage,0,0,width,height);
