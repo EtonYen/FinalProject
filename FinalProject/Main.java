@@ -34,8 +34,9 @@ public class Main extends JFrame{
 		JFrame window = new JFrame("Smart Game");
 		window.setContentPane(applet);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setSize(windowWidth, windowHeight);
+		window.setSize(windowWidth, windowHeight+30);
 		window.setVisible(true);
+		window.setResizable(false);
 																	
 	}
 
