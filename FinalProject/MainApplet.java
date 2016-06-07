@@ -184,30 +184,11 @@ public class MainApplet extends PApplet{
 	     .toUpperCase(false)
 	     .setSize(24)
 	     ;
-			
-	}
-	public void addBackButton(){
-		btOne.hide();
-		btTwo.hide();
-		btCharacter.hide();
-		btEnvironment.hide();
-		btAbout.hide();
-		btBackToMenu.show();
 		
-
-	}
-	public void chButton(){ //get in 1-P
-		btOne.hide();
-		btTwo.hide();
-		btCharacter.hide();
-		btEnvironment.hide();
-		btAbout.hide();
-		btx1=350;
 		buttonA = cp5.addButton("buttonA").setLabel(problem.getString("choiceA")).setPosition(btx1, 420) .setSize(350, 50); 
 		buttonB = cp5.addButton("buttonB").setLabel(problem.getString("choiceB")).setPosition(btx1, 480) .setSize(350, 50); 
 		buttonC = cp5.addButton("buttonC").setLabel(problem.getString("choiceC")).setPosition(btx1, 540) .setSize(350, 50); 
 		buttonD = cp5.addButton("buttonD").setLabel(problem.getString("choiceD")).setPosition(btx1, 600) .setSize(350, 50); 
-	
 		cp5.getController("buttonA")
 	     .getCaptionLabel()
 	     .setFont(f)
@@ -235,6 +216,35 @@ public class MainApplet extends PApplet{
 	     .toUpperCase(false)
 	     .setSize(24)
 	     ;
+		buttonA.hide();
+		buttonB.hide();
+		buttonC.hide();
+		buttonD.hide();
+	}
+	public void addBackButton(){
+		btOne.hide();
+		btTwo.hide();
+		btCharacter.hide();
+		btEnvironment.hide();
+		btAbout.hide();
+		btBackToMenu.show();
+		
+
+	}
+	public void chButton(){ //get in 1-P
+		btOne.hide();
+		btTwo.hide();
+		btCharacter.hide();
+		btEnvironment.hide();
+		btAbout.hide();
+		btx1=350;
+		
+		buttonA.show();
+		buttonB.show();
+		buttonC.show();
+		buttonD.show();
+		btBackToMenu.show();
+		
 	
 	}
 	public void btBackToMenu(){
@@ -251,7 +261,11 @@ public class MainApplet extends PApplet{
 		btAddCharacter3.hide();
 		btAddCharacter4.hide();
 		btAddCharacter5.hide();
-
+		
+		buttonA.hide();
+		buttonB.hide();
+		buttonC.hide();
+		buttonD.hide();
 	}
 	public void btAddCharacter1(){
 		//BlockImage puzzle = new BlockImage("1");
