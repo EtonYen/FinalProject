@@ -129,6 +129,7 @@ public class BlockImage extends Canvas {
                         }
                         else{
                         	System.out.println("win!!!!!!!");
+                        	win = true;
                         	//frm.dispose();
                         }
                 }
